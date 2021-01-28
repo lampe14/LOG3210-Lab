@@ -78,6 +78,7 @@ TOKEN :
 {
 	< IF: "if"	> |
 	< ELSE: "else" > |
+	<ELSEIF: "else if"> |
 	< STRING: "string"> |
 	< INT: "int"> |
 	< FLOAT: "float" > |
@@ -189,8 +190,10 @@ void RealValue() : { Token t;}
 	t = <REAL> {jjtThis.setValue(Double.parseDouble(t.image));}
 }
 
-
+//TODO  Verify better way for ifelse
 void IfStmt() : { }
 {
-    <IF> <LPAREN> Expr() <RPAREN> Stmt()
+    <IF> <LPAREN> Expr() <RPAREN>
+    (Stmt() |
+    (<LACC> Block() <RACC>)(<ELSEIF> <LPAREN> Expr() <RPAREN> <LACC> Block() <RACC>)* (<ELSE> <LACC> Block() <RACC>)?)
 }
