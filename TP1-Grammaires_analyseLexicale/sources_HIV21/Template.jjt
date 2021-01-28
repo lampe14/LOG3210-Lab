@@ -108,6 +108,8 @@ TOKEN :
     < NOT: "!" > |
 
 	< #EQUAL: "=" > |
+	< LPAREN:  "(" > |
+	< RPAREN: ")" > |
 	< LACC: "{" > |
 	< RACC: "}" > |
 	< COLON: ":" > |
@@ -130,9 +132,6 @@ TOKEN :
 	< REAL: (<INTEGER>) "." (<INTEGER>)> //TODO
 
 }
-
-
-
 
 
 
@@ -175,7 +174,6 @@ void BasicExpr() : {}
 }
 
 
-
 void Identifier() : { Token t;}
 {
 	t = <IDENTIFIER> {jjtThis.setValue(t.image);}
@@ -189,4 +187,10 @@ void IntValue() : { Token t;}
 void RealValue() : { Token t;}
 {
 	t = <REAL> {jjtThis.setValue(Double.parseDouble(t.image));}
+}
+
+
+void IfStmt() : { }
+{
+    <IF> <LPAREN> Expr() <RPAREN> Stmt()
 }
