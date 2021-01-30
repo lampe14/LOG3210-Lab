@@ -166,13 +166,14 @@ void AssignStmt() : { Token t;}
 
 void Expr() : {}
 {
-    BasicExpr()
+    //BasicExpr()
+    AndOrExpr()
 }
 
 void BasicExpr() : {}
 {
 	LOOKAHEAD(2) Identifier() |
-	IntValue()
+	IntValue() | RealValue()
 }
 
 
@@ -199,3 +200,46 @@ void IfStmt() : { }
     (LOOKAHEAD(2) <ELSEIF> <LPAREN> Expr() <RPAREN> ((<LACC> Block() <RACC>) | Stmt()))*
     [LOOKAHEAD(2) <ELSE> (Stmt() | <LACC> Block() <RACC>) ])
 }
+
+void AndOrExpr() : { }
+{
+    (CompExpr() (<LOGIC> CompExpr())*)#OperateurLogique(>1)
+}
+
+void CompExpr() : { }
+{
+    (AddExpr() (<COMPARE> AddExpr())*)#OperateurComparaison(>1)
+}
+
+void AddExpr() : { }
+{
+    (MulExpr() ((<PLUS> | <MINUS>) MulExpr())*)#AdditionSoustraction(>1)
+}
+
+void MulExpr() : { }
+{
+    (NegationExpr() ((<FOIS> | <DIV>) NegationExpr())*)#MultiplicationDivison(>1)
+}
+
+void NegationExpr() : { }
+{
+    (<MINUS>)* NotExpr()
+}
+
+void NotExpr() : { }
+{
+    (<NOT>)* ParExpr()
+}
+
+void ParExpr() : { }
+{
+   (<LPAREN> Expr() <RPAREN>) | BasicExpr()
+}
+
+
+
+
+
+
+
+
