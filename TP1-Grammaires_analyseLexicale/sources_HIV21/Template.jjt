@@ -154,7 +154,8 @@ void Block() : { }
 
 void Stmt() : { }
 {
-	AssignStmt() <SEMICOLON>
+	AssignStmt() <SEMICOLON> |
+	IfStmt()
 }
 
 void AssignStmt() : { Token t;}
@@ -190,10 +191,11 @@ void RealValue() : { Token t;}
 	t = <REAL> {jjtThis.setValue(Double.parseDouble(t.image));}
 }
 
-//TODO  Verify better way for ifelse
+//TODO  SIMPLIFY
 void IfStmt() : { }
 {
     <IF> <LPAREN> Expr() <RPAREN>
-    (Stmt() |
-    (<LACC> Block() <RACC>)(<ELSEIF> <LPAREN> Expr() <RPAREN> <LACC> Block() <RACC>)* (<ELSE> <LACC> Block() <RACC>)?)
+    ((Stmt() | <LACC> Block() <RACC>)
+    (LOOKAHEAD(2) <ELSEIF> <LPAREN> Expr() <RPAREN> ((<LACC> Block() <RACC>) | Stmt()))*
+    [LOOKAHEAD(2) <ELSE> (Stmt() | <LACC> Block() <RACC>) ])
 }
