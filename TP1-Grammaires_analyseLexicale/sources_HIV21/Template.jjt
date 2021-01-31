@@ -78,14 +78,18 @@ TOKEN :
 {
 	< IF: "if"	> |
 	< ELSE: "else" > |
-	<ELSEIF: "else if"> |
-	< STRING: "string"> |
-	< INT: "int"> |
+	< ELSEIF: "else if" > |
+	< STRING: "string" > |
+	< TYPE: < INT > | < CHAR > | < BOOLEAN > > |
+	< #INT: "int" > |
 	< FLOAT: "float" > |
-	< BOOL: "bool"> |
+	< BOOL: "bool" > |
 	< PRINT: "print" > |
 	< INPUT: "input" > |
-	< IN: "in" >
+	< IN: "in" > |
+	< CLASS: "class" > |
+	< #CHAR: "char" >  |
+	< #BOOLEAN: "boolean" >
 	// À compléter au besoin
 }
 
@@ -118,7 +122,7 @@ TOKEN :
 	< COMMA: "," > |
 	< #AND: "&&" > |
 	< #OR: "||" >
-	// À compléter au besoin
+	// À compléter au besoi
 }
 
 
@@ -155,7 +159,7 @@ void Block() : { }
 void Stmt() : { }
 {
 	AssignStmt() <SEMICOLON> |
-	IfStmt()
+	IfStmt() | ClassStmt()
 }
 
 void AssignStmt() : { Token t;}
@@ -175,7 +179,6 @@ void BasicExpr() : {}
 	LOOKAHEAD(2) Identifier() |
 	IntValue() | RealValue()
 }
-
 
 void Identifier() : { Token t;}
 {
@@ -234,6 +237,11 @@ void NotExpr() : { }
 void ParExpr() : { }
 {
    (<LPAREN> Expr() <RPAREN>) | BasicExpr()
+}
+
+void ClassStmt() : { }
+{
+    <CLASS> Identifier() <LACC> (<TYPE> Identifier() <SEMICOLON>)* <RACC>
 }
 
 
