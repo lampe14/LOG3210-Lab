@@ -121,8 +121,9 @@ TOKEN :
 	< SEMICOLON: ";" > |
 	< COMMA: "," > |
 	< #AND: "&&" > |
-	< #OR: "||" >
-	// À compléter au besoi
+	< #OR: "||" > |
+	< SINGLEQUOTE: "'" >
+	// À compléter au besoin
 }
 
 
@@ -166,7 +167,6 @@ void AssignStmt() : { Token t;}
 {
 	Identifier() <ASSIGN> Expr()
 }
-
 
 void Expr() : {}
 {
@@ -241,13 +241,27 @@ void ParExpr() : { }
 
 void ClassStmt() : { }
 {
-    <CLASS> Identifier() <LACC> (<TYPE> Identifier() <SEMICOLON>)* <RACC>
+    <CLASS> Identifier() <LACC> ClassDeclaration() <RACC>
 }
 
+void ClassDeclaration() : { }
+{
+    (ClassStmt() | LOOKAHEAD(3) AttributDeclaration() | MethodDeclaration())*
+}
 
+void AttributDeclaration() : { }
+{
+    <TYPE> ([<COMMA>] Identifier()
+    [<ASSIGN> [<SINGLEQUOTE>] Expr() [<SINGLEQUOTE>]])*
+    <SEMICOLON>
+}
 
+void MethodDeclaration() : { }
+{
+    MethodSignature() <LACC> Block() <RACC>
+}
 
-
-
-
-
+void MethodSignature() : { }
+{
+    <TYPE> Identifier() <LPAREN> (<TYPE> Identifier() [<COMMA>])* <RPAREN>
+}
