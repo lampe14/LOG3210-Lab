@@ -148,13 +148,13 @@ ASTProgram Program() : { }
 	Block() <EOF> { return jjtThis;  }
 }
 
-void Block() : { }
+void Block() #void : { }
 {
 	 ( Stmt() )*
 }
 
 
-void Stmt() : { }
+void Stmt() #void : { }
 {
 	AssignStmt() <SEMICOLON> |
 	IfStmt() | ClassStmt()
@@ -165,13 +165,13 @@ void AssignStmt() : { Token t;}
 	Identifier() <ASSIGN> Expr()
 }
 
-void Expr() : {}
+void Expr() #void : {}
 {
     //BasicExpr()
     AndOrExpr()
 }
 
-void BasicExpr() : {}
+void BasicExpr() #void : {}
 {
 	LOOKAHEAD(2) Identifier() |
 	IntValue() |
@@ -224,17 +224,17 @@ void MulExpr() #void : { }
 
 void NegationExpr() #void : { }
 {
-    ((<MINUS>)*)#Negation(>1) NotExpr()
+    ((<MINUS>)* NotExpr())#Negation(>1)
 }
 
 void NotExpr() #void : { }
 {
-    ((<NOT>)*)#Not(>1) ParExpr()
+    ((<NOT>)* ParExpr())#Not(>1)
 }
 
 void ParExpr() #void : { }
 {
-   (<LPAREN> Expr() <RPAREN>) | BasicExpr()
+   (<LPAREN> Expr() <RPAREN>)#Parenthese | BasicExpr()
 }
 
 void ClassStmt() : { }
@@ -250,7 +250,7 @@ void ClassDeclaration() : { }
 void AttributDeclaration() : { }
 {
     <TYPE>
-    ([<COMMA>] Identifier() [<ASSIGN> [<SINGLEQUOTE>] Expr() [<SINGLEQUOTE>]])*
+    ([<COMMA>] Identifier() [<ASSIGN> Expr()])*
     <SEMICOLON>
 }
 
