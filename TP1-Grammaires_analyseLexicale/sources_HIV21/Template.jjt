@@ -135,8 +135,7 @@ TOKEN :
 	< #DIGIT: ["0"-"9"] > |
 	< INTEGER: ["1"-"9"] (["0"-"9"])* | "0" > |
 	// // Caution! Allows numbers such as "0000.23"
-	< REAL: (<INTEGER>) "." (<INTEGER>)> //TODO
-
+	< REAL: (<INTEGER>)* "." (<INTEGER>)* (("e" | "E") "+" (<INTEGER>)*)? >
 }
 
 
@@ -177,7 +176,8 @@ void Expr() : {}
 void BasicExpr() : {}
 {
 	LOOKAHEAD(2) Identifier() |
-	IntValue() | RealValue()
+	IntValue() |
+	RealValue()
 }
 
 void Identifier() : { Token t;}
@@ -204,37 +204,37 @@ void IfStmt() : { }
     [LOOKAHEAD(2) <ELSE> (Stmt() | <LACC> Block() <RACC>) ])
 }
 
-void AndOrExpr() : { }
+void AndOrExpr() #void : { }
 {
     (CompExpr() (<LOGIC> CompExpr())*)#OperateurLogique(>1)
 }
 
-void CompExpr() : { }
+void CompExpr() #void : { }
 {
     (AddExpr() (<COMPARE> AddExpr())*)#OperateurComparaison(>1)
 }
 
-void AddExpr() : { }
+void AddExpr() #void : { }
 {
     (MulExpr() ((<PLUS> | <MINUS>) MulExpr())*)#AdditionSoustraction(>1)
 }
 
-void MulExpr() : { }
+void MulExpr() #void : { }
 {
     (NegationExpr() ((<FOIS> | <DIV>) NegationExpr())*)#MultiplicationDivison(>1)
 }
 
-void NegationExpr() : { }
+void NegationExpr() #void : { }
 {
-    (<MINUS>)* NotExpr()
+    ((<MINUS>)*)#Negation(>1) NotExpr()
 }
 
-void NotExpr() : { }
+void NotExpr() #void : { }
 {
-    (<NOT>)* ParExpr()
+    ((<NOT>)*)#Not(>1) ParExpr()
 }
 
-void ParExpr() : { }
+void ParExpr() #void : { }
 {
    (<LPAREN> Expr() <RPAREN>) | BasicExpr()
 }
@@ -251,8 +251,8 @@ void ClassDeclaration() : { }
 
 void AttributDeclaration() : { }
 {
-    <TYPE> ([<COMMA>] Identifier()
-    [<ASSIGN> [<SINGLEQUOTE>] Expr() [<SINGLEQUOTE>]])*
+    <TYPE>
+    ([<COMMA>] Identifier() [<ASSIGN> [<SINGLEQUOTE>] Expr() [<SINGLEQUOTE>]])*
     <SEMICOLON>
 }
 

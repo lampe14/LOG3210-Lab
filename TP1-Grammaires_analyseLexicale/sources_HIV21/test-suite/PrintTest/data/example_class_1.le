@@ -1,5 +1,4 @@
 class Example {
     int a;
-    char b;
     boolean c;
 }
