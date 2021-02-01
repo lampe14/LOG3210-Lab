@@ -197,9 +197,14 @@ void RealValue() : { Token t;}
 void IfStmt() : { }
 {
     <IF> <LPAREN> Expr() <RPAREN>
-    ((Stmt() | <LACC> Block() <RACC>)
-    (LOOKAHEAD(2) <ELSEIF> <LPAREN> Expr() <RPAREN> ((<LACC> Block() <RACC>) | Stmt()))*
-    [LOOKAHEAD(2) <ELSE> (Stmt() | <LACC> Block() <RACC>) ])
+    (Ifbody()
+    (LOOKAHEAD(2) <ELSEIF> <LPAREN> Expr() <RPAREN> Ifbody())*
+    [LOOKAHEAD(2) <ELSE> Ifbody() ])
+}
+
+void Ifbody() : { }
+{
+    (Stmt() | <LACC> Block() <RACC>)
 }
 
 void AndOrExpr() #void : { }
