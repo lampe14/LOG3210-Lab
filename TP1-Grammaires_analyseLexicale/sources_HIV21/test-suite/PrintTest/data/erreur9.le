@@ -1,6 +1,0 @@
-// Error test for class declaration
-// wrong type
-
-class Example {
-    int a = true;
-}
