@@ -229,12 +229,12 @@ void MulExpr() #void : { }
 
 void NegationExpr() #void : { }
 {
-    ((<MINUS>)* NotExpr())#Negation(>1)
+    (<MINUS> NegationExpr() #Negation) | NotExpr()
 }
 
 void NotExpr() #void : { }
 {
-    ((<NOT>)* ParExpr())#Not(>1)
+    (<NOT> NotExpr() #Not) | ParExpr()
 }
 
 void ParExpr() #void : { }
