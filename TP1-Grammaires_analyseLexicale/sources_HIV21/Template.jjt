@@ -135,7 +135,7 @@ TOKEN :
 	< #DIGIT: ["0"-"9"] > |
 	< INTEGER: ["1"-"9"] (["0"-"9"])* | "0" > |
 	// // Caution! Allows numbers such as "0000.23"
-    < REAL: (<INTEGER>)? "." (<INTEGER>)* (("e" | "E") (<PLUS> | <MINUS>) (<INTEGER>)*)? > //TODO
+    < REAL: (<INTEGER>)? "." (<INTEGER>)* (("e" | "E") (<PLUS> | <MINUS>) (<INTEGER>)*)? > // 2.4 Les nombres reels
 }
 
 
@@ -193,7 +193,8 @@ void RealValue() : { Token t;}
 	t = <REAL> {jjtThis.setValue(Double.parseDouble(t.image));}
 }
 
-//TODO  SIMPLIFY
+/////////////////////////////////////////////////////////////////////////////
+//2.1 Structures conditionnelles
 void IfStmt() : { }
 {
     <IF> <LPAREN> Expr() <RPAREN>
@@ -207,9 +208,11 @@ void IfBody() #void : { }
     (Stmt() | <LACC> Block() <RACC>)
 }
 
+/////////////////////////////////////////////////////////////////////////////
+//2.2 Priorite des operations
 void AndOrExpr() #void : { }
 {
-    (CompExpr() (<LOGIC> CompExpr())*)#OperateurAndOr(>1)
+    (CompExpr() [<LOGIC> AndOrExpr()])#OperateurAndOr(>1)
 }
 
 void CompExpr() #void : { }
@@ -219,12 +222,12 @@ void CompExpr() #void : { }
 
 void AddExpr() #void : { }
 {
-    (MulExpr() [(<PLUS> | <MINUS>) MulExpr()])#AdditionSoustraction(>1)
+    (MulExpr() [(<PLUS> | <MINUS>) AddExpr()])#AdditionSoustraction(>1)
 }
 
 void MulExpr() #void : { }
 {
-    (NegationExpr() ((<FOIS> | <DIV>) NegationExpr())*)#MultiplicationDivison(>1)
+    (NegationExpr() [(<FOIS> | <DIV>) MulExpr()])#MultiplicationDivison(>1)
 }
 
 void NegationExpr() #void : { }
@@ -242,6 +245,9 @@ void ParExpr() #void : { }
    (<LPAREN> Expr() <RPAREN>)#Parenthese | BasicExpr()
 }
 
+
+/////////////////////////////////////////////////////////////////////////////
+//2.3 Declaration de 'class'
 void ClassStmt() : { }
 {
     <CLASS> Identifier() <LACC> ClassDeclaration() <RACC>
