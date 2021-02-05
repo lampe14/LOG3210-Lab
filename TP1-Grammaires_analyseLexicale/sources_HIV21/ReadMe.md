@@ -1,4 +1,16 @@
 # JavaCC Template for Intellij Idea and AnT
+*******************************************************PRÉCISION********************************************************************
+Class:  
+    -AttributeDeclaration représente une ligne de déclaration d'attribut. 
+    -DeclareAttribut se trouve à l'intérieur de cette ligne. Il représente la déclaration d'une variable (Ex: int a)
+    -MethodSignature est représenté par un ou plusieurs "Identifier" où le premier représente le nom de la méthode et les autres
+     les paramètres
+    
+If:
+    -Pour ce qui est des conditions des If et ElseIf, ils sont affichés respectivement avant IfBody et ElseIfBody 
+     (au même niveau dans l'arbre)
+
+
 
 This template is a simple project that integrate correctly JavaCC to an IDE. You can now finally work in Intellij and simply press the Compile/Run buttons and enjoy. To make it works, an Ant step has been added before the compilation. Finally, the support for the visitors is present by default and a test-suite using JUnit is present and make it easy to test your parser.
 
