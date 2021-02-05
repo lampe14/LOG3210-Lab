@@ -197,8 +197,8 @@ void RealValue() : { Token t;}
 void IfStmt() : { }
 {
     <IF> <LPAREN> Expr() <RPAREN>
-    ((IfBody()#If)
-    (LOOKAHEAD(2) <ELSEIF> <LPAREN> Expr() <RPAREN> IfBody()#ElseIf)*
+    ((IfBody()#IfBody)
+    (LOOKAHEAD(2) <ELSEIF> <LPAREN> Expr() <RPAREN> IfBody()#ElseIfBody)*
     [LOOKAHEAD(2) <ELSE> IfBody()#Else])
 }
 
@@ -255,8 +255,13 @@ void ClassDeclaration() : { }
 void AttributDeclaration() : { }
 {
     <TYPE>
-    (DeclareAttribut() AssignAttribut())*
+    (DeclareAttribut())*
     <SEMICOLON>
+}
+
+void DeclareAttribut() : { }
+{
+    [<COMMA>] Identifier() AssignAttribut()
 }
 
 void AssignAttribut() #void : { }
@@ -264,17 +269,17 @@ void AssignAttribut() #void : { }
     [<ASSIGN> Expr() #AssignAttribut]
 }
 
-void DeclareAttribut() : { }
-{
-    [<COMMA>] Identifier()
-}
-
 void MethodDeclaration() : { }
 {
-    MethodSignature() <LACC> Block() <RACC>
+    MethodSignature() MethodBody()
 }
 
 void MethodSignature() : { }
 {
     <TYPE> Identifier() <LPAREN> (<TYPE> Identifier() [<COMMA>])* <RPAREN>
+}
+
+void MethodBody() : { }
+{
+    <LACC> Block() <RACC>
 }
