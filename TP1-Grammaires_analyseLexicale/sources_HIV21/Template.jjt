@@ -197,29 +197,29 @@ void RealValue() : { Token t;}
 void IfStmt() : { }
 {
     <IF> <LPAREN> Expr() <RPAREN>
-    (IfBody()
-    (LOOKAHEAD(2) <ELSEIF> <LPAREN> Expr() <RPAREN> IfBody())*
-    [LOOKAHEAD(2) <ELSE> IfBody() ])
+    ((IfBody()#If)
+    (LOOKAHEAD(2) <ELSEIF> <LPAREN> Expr() <RPAREN> IfBody()#ElseIf)*
+    [LOOKAHEAD(2) <ELSE> IfBody()#Else])
 }
 
-void IfBody() : { }
+void IfBody() #void : { }
 {
     (Stmt() | <LACC> Block() <RACC>)
 }
 
 void AndOrExpr() #void : { }
 {
-    (CompExpr() (<LOGIC> CompExpr())*)#OperateurLogique(>1)
+    (CompExpr() (<LOGIC> CompExpr())*)#OperateurAndOr(>1)
 }
 
 void CompExpr() #void : { }
 {
-    (AddExpr() (<COMPARE> AddExpr())*)#OperateurComparaison(>1)
+    (AddExpr() [<COMPARE> CompExpr()])#OperateurComparaison(>1)
 }
 
 void AddExpr() #void : { }
 {
-    (MulExpr() ((<PLUS> | <MINUS>) MulExpr())*)#AdditionSoustraction(>1)
+    (MulExpr() [(<PLUS> | <MINUS>) MulExpr()])#AdditionSoustraction(>1)
 }
 
 void MulExpr() #void : { }
@@ -255,8 +255,18 @@ void ClassDeclaration() : { }
 void AttributDeclaration() : { }
 {
     <TYPE>
-    ([<COMMA>] Identifier() [<ASSIGN> Expr()])*
+    (DeclareAttribut() AssignAttribut())*
     <SEMICOLON>
+}
+
+void AssignAttribut() #void : { }
+{
+    [<ASSIGN> Expr() #AssignAttribut]
+}
+
+void DeclareAttribut() : { }
+{
+    [<COMMA>] Identifier()
 }
 
 void MethodDeclaration() : { }
