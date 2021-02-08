@@ -167,7 +167,6 @@ void AssignStmt() : { Token t;}
 
 void Expr() #void : {}
 {
-    //BasicExpr()
     AndOrExpr()
 }
 
