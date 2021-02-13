@@ -81,14 +81,21 @@ public class SemantiqueVisitor implements ParserVisitor {
     public Object visit(ASTNormalDeclaration node, Object data) {
         String varName = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
 
-
-        SymbolTable.put(varName, node.getValue().equals("num") ? VarType.num : VarType.bool);
+        if (!SymbolTable.containsKey(varName)) {
+            SymbolTable.put(varName, node.getValue().equals("num") ? VarType.num : VarType.bool);
+            this.VAR++;
+        }
         return null;
     }
 
     @Override
     public Object visit(ASTListDeclaration node, Object data) {
-        node.childrenAccept(this, data);
+        String varName = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
+
+        if (!SymbolTable.containsKey(varName)) {
+            SymbolTable.put(varName, node.getValue().equals("listnum") ? VarType.listnum : VarType.listbool);
+            this.VAR++;
+        }
         return null;
     }
 
@@ -114,6 +121,7 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTForEachStmt node, Object data) {
         node.childrenAccept(this, data);
+        this.FOR++;
         return null;
     }
 
@@ -128,14 +136,14 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTIfStmt node, Object data) {
        node.childrenAccept(this, data);
-
+        this.IF++;
         return null;
     }
 
     @Override
     public Object visit(ASTWhileStmt node, Object data) {
         node.childrenAccept(this, data);
-
+        this.WHILE++;
         return null;
     }
 
@@ -168,9 +176,8 @@ public class SemantiqueVisitor implements ParserVisitor {
         les opérateurs == et != peuvent être utilisé pour les nombres et les booléens, mais il faut que le type soit le même
         des deux côté de l'égalité/l'inégalité.
         */
-
         ArrayList<VarType> childrenTypes = new ArrayList<>();
-
+        //node.childrenAccept(this, data);
 
         return null;
     }
@@ -187,6 +194,9 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTAddExpr node, Object data) {
         node.childrenAccept(this, data);
+        if (node.jjtGetNumChildren() > 0) {
+            this.OP++;
+        }
 
         return null;
     }
@@ -194,6 +204,9 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTMulExpr node, Object data) {
         node.childrenAccept(this, data);
+        if (node.jjtGetNumChildren() > 0) {
+            this.OP++;
+        }
 
         return null;
     }
@@ -201,7 +214,9 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTBoolExpr node, Object data) {
         node.childrenAccept(this, data);
-
+        if (node.jjtGetNumChildren() > 0) {
+            this.OP++;
+        }
         return null;
     }
 
@@ -221,13 +236,18 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTNotExpr node, Object data) {
         node.childrenAccept(this, data);
-
+        if (node.getOps().size() > 0) {
+            this.OP++;
+        }
         return null;
     }
 
     @Override
     public Object visit(ASTUnaExpr node, Object data) {
         node.childrenAccept(this, data);
+        if (node.getOps().size() > 0) {
+            this.OP++;
+        }
         return null;
     }
 
