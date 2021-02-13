@@ -81,7 +81,9 @@ public class SemantiqueVisitor implements ParserVisitor {
     public Object visit(ASTNormalDeclaration node, Object data) {
         String varName = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
 
-        if (!SymbolTable.containsKey(varName)) {
+        if (SymbolTable.containsKey(varName)) {
+           print("Invalid declaration... variable " + varName +  " already exists");
+        } else {
             SymbolTable.put(varName, node.getValue().equals("num") ? VarType.num : VarType.bool);
             this.VAR++;
         }
@@ -92,10 +94,13 @@ public class SemantiqueVisitor implements ParserVisitor {
     public Object visit(ASTListDeclaration node, Object data) {
         String varName = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
 
-        if (!SymbolTable.containsKey(varName)) {
+        if (SymbolTable.containsKey(varName)) {
+            print("Invalid declaration... variable " + varName +  " already exists");
+        } else {
             SymbolTable.put(varName, node.getValue().equals("listnum") ? VarType.listnum : VarType.listbool);
             this.VAR++;
         }
+
         return null;
     }
 
