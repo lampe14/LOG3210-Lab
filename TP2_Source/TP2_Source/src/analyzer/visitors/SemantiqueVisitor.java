@@ -3,8 +3,6 @@ package analyzer.visitors;
 import analyzer.SemantiqueError;
 import analyzer.ast.*;
 
-import javax.lang.model.element.VariableElement;
-import javax.xml.crypto.Data;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,11 +39,13 @@ public class SemantiqueVisitor implements ParserVisitor {
     regardez l'énoncé ou les tests pour voir le message à afficher et dans quelle situation.
     Lorsque vous voulez afficher une erreur, utilisez la méthode print implémentée ci-dessous.
     Tous vos tests doivent passer!!
+
      */
 
     @Override
     public Object visit(SimpleNode node, Object data) {
         node.childrenAccept(this, data);
+
         return null;
     }
 
@@ -73,7 +73,6 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTDeclaration node, Object data) {
         node.childrenAccept(this, data);
-
         return null;
     }
 
@@ -82,7 +81,7 @@ public class SemantiqueVisitor implements ParserVisitor {
         String varName = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
 
         if (SymbolTable.containsKey(varName)) {
-            print("Invalid declaration... variable " + varName + " already exists");
+           print("Invalid declaration... variable " + varName +  " already exists");
         }
         else {
             SymbolTable.put(varName, node.getValue().equals("num") ? VarType.num : VarType.bool);
@@ -129,6 +128,7 @@ public class SemantiqueVisitor implements ParserVisitor {
     public Object visit(ASTForEachStmt node, Object data) {
         node.childrenAccept(this, data);
 
+        FOR++;
 
         return null;
     }
@@ -181,6 +181,7 @@ public class SemantiqueVisitor implements ParserVisitor {
 //                    + " but got " + ds.type);
 //        }
         node.childrenAccept(this, data);
+
         return null;
     }
 
@@ -188,6 +189,7 @@ public class SemantiqueVisitor implements ParserVisitor {
     public Object visit(ASTExpr node, Object data) {
         //Il est normal que tous les noeuds jusqu'à expr retourne un type.
 
+        node.childrenAccept(this, data);
         return null;
     }
 
@@ -205,7 +207,6 @@ public class SemantiqueVisitor implements ParserVisitor {
 
         ArrayList<VarType> childrenTypes = new ArrayList<>();
         OP++;
-
         return null;
     }
 
@@ -220,22 +221,29 @@ public class SemantiqueVisitor implements ParserVisitor {
      */
     @Override
     public Object visit(ASTAddExpr node, Object data) {
-        node.childrenAccept(this, data);
-        OP++;
+        //node.childrenAccept(this, data);
+
+        if (node.jjtGetNumChildren() > 0) {
+            OP++;
+        }
         return null;
     }
 
     @Override
     public Object visit(ASTMulExpr node, Object data) {
-        node.childrenAccept(this, data);
-        OP++;
+        if (node.jjtGetNumChildren() > 0) {
+            OP++;
+        }
+
         return null;
     }
 
     @Override
     public Object visit(ASTBoolExpr node, Object data) {
-        node.childrenAccept(this, data);
-        OP++;
+        //node.childrenAccept(this, data);
+        if (node.jjtGetNumChildren() > 0) {
+            OP++;
+        }
         return null;
     }
 
@@ -255,21 +263,32 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTNotExpr node, Object data) {
         node.childrenAccept(this, data);
-        OP++;
+
+        if (node.getOps().size() > 0) {
+            OP++;
+        }
         return null;
     }
 
     @Override
     public Object visit(ASTUnaExpr node, Object data) {
-        node.childrenAccept(this, data);
-        OP++;
+
+        if (node.getOps().size() > 0) {
+            OP++;
+        }
         return null;
     }
 
     /*
+<<<<<<< HEAD
     les noeudS ASTIdentifier aillant comme parent "GenValue" doivent vérifier leur type et vérifier leur existence.
 
     Ont peut envoyer une information a un enfant avec le 2e paramètre de jjtAccept ou childrenAccept.
+=======
+    les noeud ASTIdentifier aillant comme parent "GenValue" doivent vérifier leur type et vérifier leur existence.
+
+    Ont peut envoyé une information a un enfant avec le 2e paramètre de jjtAccept ou childrenAccept.
+>>>>>>> ba5c33c55bfb6830a3bc082d88f47c6565332a0b
      */
     @Override
     public Object visit(ASTGenValue node, Object data) {
@@ -299,6 +318,7 @@ public class SemantiqueVisitor implements ParserVisitor {
             VarType varType = SymbolTable.get(node.getValue());
             ds.type = varType;
         }
+
         return null;
     }
 
@@ -308,6 +328,7 @@ public class SemantiqueVisitor implements ParserVisitor {
         if (node.jjtGetParent() instanceof ASTGenValue) {
             ((DataStruct) data).type = VarType.num;
         }
+
         return null;
     }
 
