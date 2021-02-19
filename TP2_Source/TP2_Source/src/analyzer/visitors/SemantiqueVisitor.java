@@ -178,7 +178,7 @@ public class SemantiqueVisitor implements ParserVisitor {
         node.jjtGetChild(1).jjtAccept(this, ds);
 
         if(SymbolTable.get(varName) != ds.type) {
-            print("Invalid type in assignment of Identifier " + varName + "... was expecting " + SymbolTable.get(varName)
+            print("Invalid type in assignation of Identifier " + varName + "... was expecting " + SymbolTable.get(varName)
                     + " but got " + ds.type);
         }
         node.childrenAccept(this, ds);
@@ -189,8 +189,7 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTExpr node, Object data) {
         //Il est normal que tous les noeuds jusqu'à expr retourne un type.
-        DataStruct ds = new DataStruct();
-        node.childrenAccept(this, ds);
+        node.childrenAccept(this, data);
         return null;
     }
 
