@@ -3,6 +3,7 @@ package analyzer.visitors;
 import analyzer.SemantiqueError;
 import analyzer.ast.*;
 
+import javax.xml.crypto.Data;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -171,16 +172,16 @@ public class SemantiqueVisitor implements ParserVisitor {
      */
     @Override
     public Object visit(ASTAssignStmt node, Object data) {
-//        String varName = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
-//
-//        DataStruct ds = new DataStruct();
-//        node.jjtGetChild(1).jjtAccept(this, ds);
-//
-//        if(SymbolTable.get(varName) != ds.type) {
-//            print("Invalid type in assignment of Identifier " + varName + "... was expecting " + SymbolTable.get(varName)
-//                    + " but got " + ds.type);
-//        }
-        node.childrenAccept(this, data);
+        String varName = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
+
+        DataStruct ds = new DataStruct();
+        node.jjtGetChild(1).jjtAccept(this, ds);
+
+        if(SymbolTable.get(varName) != ds.type) {
+            print("Invalid type in assignment of Identifier " + varName + "... was expecting " + SymbolTable.get(varName)
+                    + " but got " + ds.type);
+        }
+        node.childrenAccept(this, ds);
 
         return null;
     }
@@ -188,8 +189,8 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTExpr node, Object data) {
         //Il est normal que tous les noeuds jusqu'à expr retourne un type.
-
-        node.childrenAccept(this, data);
+        DataStruct ds = new DataStruct();
+        node.childrenAccept(this, ds);
         return null;
     }
 
@@ -206,6 +207,8 @@ public class SemantiqueVisitor implements ParserVisitor {
         */
 
         ArrayList<VarType> childrenTypes = new ArrayList<>();
+        node.childrenAccept(this, data);
+
         OP++;
         return null;
     }
@@ -221,7 +224,7 @@ public class SemantiqueVisitor implements ParserVisitor {
      */
     @Override
     public Object visit(ASTAddExpr node, Object data) {
-        //node.childrenAccept(this, data);
+        node.childrenAccept(this, data);
 
         if (node.jjtGetNumChildren() > 0) {
             OP++;
@@ -231,6 +234,8 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTMulExpr node, Object data) {
+        node.childrenAccept(this, data);
+
         if (node.jjtGetNumChildren() > 0) {
             OP++;
         }
@@ -240,7 +245,7 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTBoolExpr node, Object data) {
-        //node.childrenAccept(this, data);
+        node.childrenAccept(this, data);
         if (node.jjtGetNumChildren() > 0) {
             OP++;
         }
@@ -272,7 +277,7 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTUnaExpr node, Object data) {
-
+        node.childrenAccept(this, data);
         if (node.getOps().size() > 0) {
             OP++;
         }
@@ -280,15 +285,11 @@ public class SemantiqueVisitor implements ParserVisitor {
     }
 
     /*
-<<<<<<< HEAD
+
     les noeudS ASTIdentifier aillant comme parent "GenValue" doivent vérifier leur type et vérifier leur existence.
 
     Ont peut envoyer une information a un enfant avec le 2e paramètre de jjtAccept ou childrenAccept.
-=======
-    les noeud ASTIdentifier aillant comme parent "GenValue" doivent vérifier leur type et vérifier leur existence.
 
-    Ont peut envoyé une information a un enfant avec le 2e paramètre de jjtAccept ou childrenAccept.
->>>>>>> ba5c33c55bfb6830a3bc082d88f47c6565332a0b
      */
     @Override
     public Object visit(ASTGenValue node, Object data) {
@@ -300,23 +301,22 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTBoolValue node, Object data) {
         //node.childrenAccept(this, data);
-        DataStruct ds = new DataStruct();
-        ds.type = VarType.bool;
-
+        if (node.jjtGetParent() instanceof ASTGenValue) {
+            ((DataStruct) data).type = VarType.bool;
+        }
         return null;
     }
 
     @Override
     public Object visit(ASTIdentifier node, Object data) {
-        DataStruct ds = new DataStruct();
         if(!SymbolTable.containsKey(node.getValue())) {
             print("Invalid use of undefined Identifier " + node.getValue());
-            ds.type = VarType.undefined;
+            ((DataStruct) data).type = VarType.undefined;
 
         }
         else if (node.jjtGetParent() instanceof ASTGenValue) {
             VarType varType = SymbolTable.get(node.getValue());
-            ds.type = varType;
+            ((DataStruct) data).type = varType;
         }
 
         return null;
