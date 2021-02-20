@@ -220,7 +220,9 @@ public class SemantiqueVisitor implements ParserVisitor {
         ArrayList<VarType> childrenTypes = new ArrayList<>();
         node.childrenAccept(this, data);
 
-        OP++;
+        if (node.jjtGetNumChildren() > 1) {
+            OP++;
+        }
         return null;
     }
 
@@ -237,7 +239,7 @@ public class SemantiqueVisitor implements ParserVisitor {
     public Object visit(ASTAddExpr node, Object data) {
         node.childrenAccept(this, data);
 
-        if (node.jjtGetNumChildren() > 0) { //cest pas >1?
+        if (node.jjtGetNumChildren() > 1) { //cest pas >1?
             OP++;
         }
         return null;
@@ -247,7 +249,7 @@ public class SemantiqueVisitor implements ParserVisitor {
     public Object visit(ASTMulExpr node, Object data) {
         node.childrenAccept(this, data);
 
-        if (node.jjtGetNumChildren() > 0) {
+        if (node.jjtGetNumChildren() > 1) {
             OP++;
         }
 
@@ -257,7 +259,7 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTBoolExpr node, Object data) {
         node.childrenAccept(this, data);
-        if (node.jjtGetNumChildren() > 0) {
+        if (node.jjtGetNumChildren() > 1) {
             OP++;
         }
         return null;
