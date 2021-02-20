@@ -127,7 +127,19 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTForEachStmt node, Object data) {
-        node.childrenAccept(this, data);
+        //node.childrenAccept(this, data);
+        String declaredName = ((ASTNormalDeclaration)node.jjtGetChild(0)).getValue();
+
+        DataStruct ds = new DataStruct();
+        node.jjtGetChild(1).jjtAccept(this, ds);
+
+        if(ds.type != VarType.listnum || ds.type != VarType.listbool) {
+            print("Array type is required here...");
+        }
+        else if(SymbolTable.get(declaredName) != ds.type) {
+            print("Array type "+ ds.type + " is incompatible with declared variable of type "
+                    + SymbolTable.get(declaredName) + "...");
+        }
 
         FOR++;
 
@@ -181,7 +193,6 @@ public class SemantiqueVisitor implements ParserVisitor {
             print("Invalid type in assignation of Identifier " + varName + "... was expecting " + SymbolTable.get(varName)
                     + " but got " + ds.type);
         }
-        node.childrenAccept(this, ds);
 
         return null;
     }
@@ -219,13 +230,13 @@ public class SemantiqueVisitor implements ParserVisitor {
     /*
     opérateur binaire
     si il n'y a qu'un enfant, aucune vérification à faire.
-    par exemple, un AddExpr peut retourné le type "Bool" à condition de n'avoir qu'un seul enfant.
+    par exemple, un AddExpr peut retourner le type "Bool" à condition de n'avoir qu'un seul enfant.
      */
     @Override
     public Object visit(ASTAddExpr node, Object data) {
         node.childrenAccept(this, data);
 
-        if (node.jjtGetNumChildren() > 0) {
+        if (node.jjtGetNumChildren() > 0) { //cest pas >1?
             OP++;
         }
         return null;
