@@ -128,8 +128,7 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTForEachStmt node, Object data) {
         //TODO revoir existence
-        //node.childrenAccept(this, data);
-        node.jjtGetChild(0).jjtAccept(this, data);
+        node.childrenAccept(this, data);
         String declaredName = ((ASTIdentifier)node.jjtGetChild(0).jjtGetChild(0)).getValue();
         String arrayName = ((ASTIdentifier)node.jjtGetChild(1)).getValue();
         VarType arrayType = SymbolTable.get(arrayName);
@@ -142,13 +141,6 @@ public class SemantiqueVisitor implements ParserVisitor {
         else if(!isBoolValid && !isNumValid) {
             print("Array type "+ arrayType + " is incompatible with declared variable of type "
                     + SymbolTable.get(declaredName) + "...");
-        }
-
-        int numChildren = node.jjtGetNumChildren();
-        DataStruct ds;
-        for (int i = 1; i < numChildren; i++) {
-            ds = new DataStruct();
-            node.jjtGetChild(i).jjtAccept(this, ds);
         }
 
         FOR++;
@@ -207,9 +199,8 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTAssignStmt node, Object data) {
         String varName = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
-
         DataStruct ds = new DataStruct();
-        node.jjtGetChild(1).jjtAccept(this, ds);
+        node.childrenAccept(this, ds);
 
         if(SymbolTable.get(varName) != ds.type) {
             print("Invalid type in assignation of Identifier " + varName + "... was expecting " + SymbolTable.get(varName)
@@ -369,10 +360,8 @@ public class SemantiqueVisitor implements ParserVisitor {
     public Object visit(ASTIdentifier node, Object data) {
         if(!SymbolTable.containsKey(node.getValue())) {
             print("Invalid use of undefined Identifier " + node.getValue());
-            ((DataStruct) data).type = VarType.undefined;
 
-        }
-        else if (node.jjtGetParent() instanceof ASTGenValue) {
+        } else if (node.jjtGetParent() instanceof ASTGenValue) {
             VarType varType = SymbolTable.get(node.getValue());
             ((DataStruct) data).type = varType;
         }
@@ -397,7 +386,6 @@ public class SemantiqueVisitor implements ParserVisitor {
         num,
         listnum,
         listbool,
-        undefined
     }
 
     private class DataStruct {
