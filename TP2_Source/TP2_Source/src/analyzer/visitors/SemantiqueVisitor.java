@@ -100,7 +100,7 @@ public class SemantiqueVisitor implements ParserVisitor {
             print("Invalid declaration... variable " + varName + " already exists");
         }
         else {
-            SymbolTable.put(varName, node.getValue().equals("listNum") ? VarType.listnum : VarType.listbool);
+            SymbolTable.put(varName, node.getValue().equals("listnum") ? VarType.listnum : VarType.listbool);
             VAR++;
         }
         return null;
@@ -127,17 +127,18 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTForEachStmt node, Object data) {
+        //TODO revoir existence
         //node.childrenAccept(this, data);
-        String declaredName = ((ASTNormalDeclaration)node.jjtGetChild(0)).getValue();
+        node.jjtGetChild(0).jjtAccept(this, data);
+        String declaredName = ((ASTIdentifier)node.jjtGetChild(0).jjtGetChild(0)).getValue();
+        String arrayName = ((ASTIdentifier)node.jjtGetChild(1)).getValue();
+        VarType arrayType = SymbolTable.get(arrayName);
 
-        DataStruct ds = new DataStruct();
-        node.jjtGetChild(1).jjtAccept(this, ds);
-
-        if(ds.type != VarType.listnum || ds.type != VarType.listbool) {
+        if(arrayType != VarType.listnum && arrayType != VarType.listbool) {
             print("Array type is required here...");
         }
-        else if(SymbolTable.get(declaredName) != ds.type) {
-            print("Array type "+ ds.type + " is incompatible with declared variable of type "
+        else if(SymbolTable.get(declaredName) != arrayType) {
+            print("Array type "+ arrayType + " is incompatible with declared variable of type "
                     + SymbolTable.get(declaredName) + "...");
         }
 
