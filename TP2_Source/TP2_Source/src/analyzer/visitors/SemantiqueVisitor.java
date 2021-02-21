@@ -111,7 +111,6 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTStmt node, Object data) {
-
         node.childrenAccept(this, data);
         return null;
     }
@@ -123,7 +122,6 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTForEachStmt node, Object data) {
-
         node.jjtGetChild(0).jjtAccept(this, data);
         node.jjtGetChild(1).jjtAccept(this, data);
 
@@ -288,12 +286,12 @@ public class SemantiqueVisitor implements ParserVisitor {
         if (!node.getOps().isEmpty()) {
             DataStruct ds = new DataStruct();
             node.jjtGetChild(0).jjtAccept(this, ds);
-            if (ds.type != VarType.bool) print("Invalid type in expression");
+            if (ds.type != VarType.bool)
+                print("Invalid type in expression");
             ((DataStruct) data).type = VarType.bool;
             OP += node.getOps().size();
-        } else {
+        } else
             node.childrenAccept(this, data);
-        }
         return null;
     }
 
@@ -303,12 +301,12 @@ public class SemantiqueVisitor implements ParserVisitor {
         if (!node.getOps().isEmpty()) {
             DataStruct ds = new DataStruct();
             node.jjtGetChild(0).jjtAccept(this, ds);
-            if (ds.type != VarType.num) print("Invalid type in expression");
+            if (ds.type != VarType.num)
+                print("Invalid type in expression");
             ((DataStruct) data).type = VarType.num;
             OP += node.getOps().size();
-        } else {
+        } else
             node.childrenAccept(this, data);
-        }
         return null;
     }
 
