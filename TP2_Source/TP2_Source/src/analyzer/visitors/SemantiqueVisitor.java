@@ -46,7 +46,6 @@ public class SemantiqueVisitor implements ParserVisitor {
     @Override
     public Object visit(SimpleNode node, Object data) {
         node.childrenAccept(this, data);
-
         return null;
     }
 
@@ -81,9 +80,8 @@ public class SemantiqueVisitor implements ParserVisitor {
     public Object visit(ASTNormalDeclaration node, Object data) {
         String varName = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
 
-        if (SymbolTable.containsKey(varName)) {
+        if (SymbolTable.containsKey(varName))
            print("Invalid declaration... variable " + varName +  " already exists");
-        }
         else {
             SymbolTable.put(varName, node.getValue().equals("num") ? VarType.num : VarType.bool);
             VAR++;
@@ -93,12 +91,11 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTListDeclaration node, Object data) {
-        //node.childrenAccept(this, data);
         String varName = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
 
-        if (SymbolTable.containsKey(varName)) {
+        if (SymbolTable.containsKey(varName))
             print("Invalid declaration... variable " + varName + " already exists");
-        }
+
         else {
             SymbolTable.put(varName, node.getValue().equals("listnum") ? VarType.listnum : VarType.listbool);
             VAR++;
@@ -127,10 +124,14 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTForEachStmt node, Object data) {
-        //TODO revoir existence
-        node.childrenAccept(this, data);
+
+        node.jjtGetChild(0).jjtAccept(this, data);
+        node.jjtGetChild(1).jjtAccept(this, data);
+        node.jjtGetChild(2).jjtAccept(this, data);
+
         String declaredName = ((ASTIdentifier)node.jjtGetChild(0).jjtGetChild(0)).getValue();
         String arrayName = ((ASTIdentifier)node.jjtGetChild(1)).getValue();
+
         VarType arrayType = SymbolTable.get(arrayName);
         boolean isBoolValid = SymbolTable.get(declaredName) == VarType.bool && arrayType == VarType.listbool;
         boolean isNumValid = SymbolTable.get(declaredName) == VarType.num && arrayType == VarType.listnum;
@@ -142,14 +143,21 @@ public class SemantiqueVisitor implements ParserVisitor {
             print("Array type "+ arrayType + " is incompatible with declared variable of type "
                     + SymbolTable.get(declaredName) + "...");
         }
-
         FOR++;
-
         return null;
     }
 
     private void callChildrenCond(SimpleNode node) {
+        DataStruct ds = new DataStruct();
+        node.jjtGetChild(0).jjtAccept(this, ds);
 
+        if (ds.type != VarType.bool)
+            throw new SemantiqueError("Invalid type in condition.");
+
+        for (int i = 1; i < node.jjtGetNumChildren(); i++) {
+            ds = new DataStruct();
+            node.jjtGetChild(i).jjtAccept(this, ds);
+        }
     }
 
     /*
@@ -158,36 +166,14 @@ public class SemantiqueVisitor implements ParserVisitor {
      */
     @Override
     public Object visit(ASTIfStmt node, Object data) {
-        DataStruct ds = new DataStruct();
-        node.jjtGetChild(0).jjtAccept(this, ds);
-
-        if (ds.type != VarType.bool) {
-            throw new SemantiqueError("Invalid type in condition.");
-        }
-
-        int numChildren = node.jjtGetNumChildren();
-        for (int i = 1; i < numChildren; i++) {
-            ds = new DataStruct();
-            node.jjtGetChild(i).jjtAccept(this, ds);
-        }
+        callChildrenCond(node);
         IF++;
         return null;
     }
 
     @Override
     public Object visit(ASTWhileStmt node, Object data) {
-        DataStruct ds = new DataStruct();
-        node.jjtGetChild(0).jjtAccept(this, ds);
-
-        if (ds.type != VarType.bool) {
-            throw new SemantiqueError("Invalid type in condition.");
-        }
-
-        int numChildren = node.jjtGetNumChildren();
-        for (int i = 1; i < numChildren; i++) {
-            ds = new DataStruct();
-            node.jjtGetChild(i).jjtAccept(this, ds);
-        }
+        callChildrenCond(node);
         WHILE++;
         return null;
     }
@@ -240,7 +226,7 @@ public class SemantiqueVisitor implements ParserVisitor {
                         print("Invalid type in expression");
                 }
                 ((DataStruct) data).type = VarType.bool;
-                OP++;
+            OP += node.jjtGetNumChildren() - 1;
         } else {
             node.childrenAccept(this, data);
         }
@@ -248,18 +234,17 @@ public class SemantiqueVisitor implements ParserVisitor {
     }
 
     private void callChildren(SimpleNode node, Object data, VarType validType) {
-        int numChilds = node.jjtGetNumChildren();
-        if (numChilds > 1) {
-            for (int i = 0; i < numChilds; ++i) {
-                DataStruct d = new DataStruct();
-                node.jjtGetChild(i).jjtAccept(this, d);
-                if (d.type != validType) {
+        if (node.jjtGetNumChildren() > 1) {
+            for (int i = 0; i < node.jjtGetNumChildren(); ++i) {
+                DataStruct ds = new DataStruct();
+                node.jjtGetChild(i).jjtAccept(this, ds);
+                if (ds.type != validType) {
                     print("Invalid type in expression");
                     break;
                 }
             }
             ((DataStruct) data).type = validType;
-            OP++;
+            OP += node.jjtGetNumChildren() - 1;
         } else {
             node.childrenAccept(this, data);
         }
@@ -303,14 +288,13 @@ public class SemantiqueVisitor implements ParserVisitor {
     */
     @Override
     public Object visit(ASTNotExpr node, Object data) {
-        int numOperands = node.getOps().size();
 
-        if (numOperands > 0) {
-            DataStruct d = new DataStruct();
-            node.jjtGetChild(0).jjtAccept(this, d);
-            if (d.type != VarType.bool) print("Invalid type in expression");
+        if (!node.getOps().isEmpty()) {
+            DataStruct ds = new DataStruct();
+            node.jjtGetChild(0).jjtAccept(this, ds);
+            if (ds.type != VarType.bool) print("Invalid type in expression");
             ((DataStruct) data).type = VarType.bool;
-            OP++;
+            OP += node.getOps().size();
         } else {
             node.childrenAccept(this, data);
         }
@@ -319,14 +303,13 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTUnaExpr node, Object data) {
-        int numOperands = node.getOps().size();
 
-        if (numOperands > 0) {
-            DataStruct d = new DataStruct();
-            node.jjtGetChild(0).jjtAccept(this, d);
-            if (d.type != VarType.num) print("Invalid type in expression");
+        if (!node.getOps().isEmpty()) {
+            DataStruct ds = new DataStruct();
+            node.jjtGetChild(0).jjtAccept(this, ds);
+            if (ds.type != VarType.num) print("Invalid type in expression");
             ((DataStruct) data).type = VarType.num;
-            OP++;
+            OP += node.getOps().size();
         } else {
             node.childrenAccept(this, data);
         }
@@ -349,10 +332,7 @@ public class SemantiqueVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTBoolValue node, Object data) {
-        //node.childrenAccept(this, data);
-        if (node.jjtGetParent() instanceof ASTGenValue) {
-            ((DataStruct) data).type = VarType.bool;
-        }
+        ((DataStruct) data).type = VarType.bool;
         return null;
     }
 
@@ -365,17 +345,12 @@ public class SemantiqueVisitor implements ParserVisitor {
             VarType varType = SymbolTable.get(node.getValue());
             ((DataStruct) data).type = varType;
         }
-
         return null;
     }
 
     @Override
     public Object visit(ASTIntValue node, Object data) {
-//        node.childrenAccept(this, data);
-        if (node.jjtGetParent() instanceof ASTGenValue) {
-            ((DataStruct) data).type = VarType.num;
-        }
-
+        ((DataStruct) data).type = VarType.num;
         return null;
     }
 
