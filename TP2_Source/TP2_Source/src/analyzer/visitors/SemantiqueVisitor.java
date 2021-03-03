@@ -239,9 +239,8 @@ public class SemantiqueVisitor implements ParserVisitor {
             }
             ((DataStruct) data).type = validType;
             OP += node.jjtGetNumChildren() - 1;
-        } else {
+        } else
             node.childrenAccept(this, data);
-        }
     }
 
     /*
