@@ -113,7 +113,8 @@ public class IntermediateCodeGenFallVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTAssignStmt node, Object data) {
         String id = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
-        node.jjtGetChild(1).jjtAccept(this, data);
+        String addr = (String)node.jjtGetChild(1).jjtAccept(this, data);
+        m_writer.println(id + " = " + addr);
 
         return null;
     }
