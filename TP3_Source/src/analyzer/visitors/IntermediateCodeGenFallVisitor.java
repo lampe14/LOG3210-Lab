@@ -113,9 +113,9 @@ public class IntermediateCodeGenFallVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTAssignStmt node, Object data) {
         String id = ((ASTIdentifier) node.jjtGetChild(0)).getValue();
-        String addr = (String)node.jjtGetChild(1).jjtAccept(this, data);
-        m_writer.println(id + " = " + addr);
+        String expr = (String) node.jjtGetChild(1).jjtAccept(this, data);
 
+//        m_writer.println(id + " = " + expr);
         return null;
     }
 
@@ -155,7 +155,14 @@ public class IntermediateCodeGenFallVisitor implements ParserVisitor {
     //chercher un deuxième noeud enfant pour avoir une valeur puisqu'il s'agit d'une opération unaire.
     @Override
     public Object visit(ASTUnaExpr node, Object data) {
-        node.jjtGetChild(0).jjtAccept(this, data);
+//        node.jjtGetChild(0).jjtAccept(this, data);
+        String expr = (String) node.jjtGetChild(0).jjtAccept(this, data);
+        if (node.getOps().size() > 0) {
+            for (int i = 0; i < node.getOps().size(); i++) {
+//                String t = genId();
+                m_writer.println(" - " + expr);
+            }
+        }
         return null;
     }
 
