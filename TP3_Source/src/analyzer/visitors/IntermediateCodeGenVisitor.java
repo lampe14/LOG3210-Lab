@@ -125,8 +125,19 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTAssignStmt node, Object data) {
         String id = (String)node.jjtGetChild(0).jjtAccept(this, data);
-        String expr = (String) node.jjtGetChild(1).jjtAccept(this, data);
-        m_writer.println(id + " = " + expr);
+        if (SymbolTable.get(id) == VarType.Number) {
+            String expr = (String) node.jjtGetChild(1).jjtAccept(this, data);
+            m_writer.println(id + " = " + expr);
+        } else {
+            BoolLabel boolLabel = new BoolLabel(genLabel(), genLabel());
+            Boolean expr = (Boolean) node.jjtGetChild(1).jjtAccept(this, data);
+            m_writer.println("goto " + (expr == true ? boolLabel.lTrue : boolLabel.lFalse));
+            m_writer.println(boolLabel.lTrue);
+            m_writer.println(id + " = " + 1);
+            m_writer.println("goto " + data);
+            m_writer.println(boolLabel.lFalse);
+            m_writer.println(id + " = " + 0);
+        }
         return null;
     }
 
@@ -172,8 +183,8 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTUnaExpr node, Object data) {
         if (!node.getOps().isEmpty()) {
-            String id = genId();
             String expr = (String) node.jjtGetChild(0).jjtAccept(this, data);
+            String id = genId();
             m_writer.println(id + " = " + node.getOps().get(0) + " " + expr);
             for (int i = 1; i < node.getOps().size(); ++i) {
                 expr = genId();
@@ -229,7 +240,7 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
      */
     @Override
     public Object visit(ASTBoolValue node, Object data) {
-        return null;
+        return node.getValue();
     }
 
 
