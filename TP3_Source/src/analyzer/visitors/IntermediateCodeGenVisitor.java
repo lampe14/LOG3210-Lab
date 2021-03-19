@@ -110,9 +110,10 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
 //        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
 //            node.jjtGetChild(i).jjtAccept(this, data);
 //        }
-        String label = genLabel();
-        String expr = (String)  node.jjtGetChild(0).jjtAccept(this, data);
-        m_writer.println("if " + expr + " goto " + label);
+        BoolLabel boolLabel = new BoolLabel(genLabel(), (String) data);
+        node.jjtGetChild(0).jjtAccept(this, boolLabel);
+        m_writer.println(boolLabel.lTrue);
+        node.jjtGetChild(1).jjtAccept(this, boolLabel);
         return null;
     }
 
