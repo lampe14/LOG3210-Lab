@@ -233,9 +233,6 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
     }
 
 
-
-
-
     @Override
     public Object visit(ASTCompExpr node, Object data) {
         if (node.jjtGetNumChildren() > 1) {
@@ -258,6 +255,14 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
      */
     @Override
     public Object visit(ASTNotExpr node, Object data) {
+        if (!node.getOps().isEmpty() && (node.getOps().size() % 2 != 0)) {
+            BoolLabel b = (BoolLabel) data;
+            BoolLabel b1 = new BoolLabel("", "");
+            b1.lTrue = b.lFalse;
+            b1.lFalse = b.lTrue;
+            return node.jjtGetChild(0).jjtAccept(this, b1);
+        }
+
         return node.jjtGetChild(0).jjtAccept(this, data);
     }
 
