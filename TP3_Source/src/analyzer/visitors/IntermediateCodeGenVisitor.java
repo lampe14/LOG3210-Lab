@@ -70,11 +70,11 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
     public Object visit(ASTDeclaration node, Object data) {
         ASTIdentifier id = (ASTIdentifier) node.jjtGetChild(0);
         VarType t;
-        if(node.getValue().equals("bool")) {
+        if (node.getValue().equals("bool"))
             t = VarType.Bool;
-        } else {
+        else
             t = VarType.Number;
-        }
+
         SymbolTable.put(id.getValue(), t);
         return null;
     }
@@ -87,9 +87,8 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
                 String s1 = genLabel();
                 node.jjtGetChild(i).jjtAccept(this, s1);
                 m_writer.println(s1);
-            } else {
+            } else
                 node.jjtGetChild(i).jjtAccept(this, s2);
-            }
         }
         return null;
     }
@@ -177,9 +176,8 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
             String e2 = (String) node.jjtGetChild(1).jjtAccept(this, data);
             m_writer.println(id + " = " + e1 + " " + ops.get(0) + " " + e2);
             return id;
-        } else {
+        } else
             return node.jjtGetChild(0).jjtAccept(this, data);
-        }
     }
 
     @Override
@@ -206,9 +204,8 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
                 id = expr;
             }
             return id;
-        } else {
+        } else
             return node.jjtGetChild(0).jjtAccept(this, data);
-        }
     }
 
     //expression logique
@@ -237,9 +234,8 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
                 node.jjtGetChild(1).jjtAccept(this, b2);
             }
             return null;
-        } else {
+        } else
             return node.jjtGetChild(0).jjtAccept(this, data);
-        }
     }
 
 
@@ -252,9 +248,8 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
             m_writer.println("if " +  e1 + " " + node.getValue() + " " + e2 + " goto " + b.lTrue);
             m_writer.println("goto " + b.lFalse);
             return null;
-        } else {
+        } else
             return node.jjtGetChild(0).jjtAccept(this, data);
-        }
     }
 
 
@@ -287,11 +282,10 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
      */
     @Override
     public Object visit(ASTBoolValue node, Object data) {
-        if (node.getValue() == true) {
+        if (node.getValue() == true)
             m_writer.println("goto " + ((BoolLabel) data).lTrue);
-        } else {
+        else
             m_writer.println("goto " + ((BoolLabel) data).lFalse);
-        }
         return node.getValue();
     }
 
@@ -319,25 +313,18 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTSwitchStmt node, Object data) {
-        String begin = genLabel();
-        BoolLabel b = new BoolLabel(genLabel(), (String) data);
-        m_writer.println("goto " + begin);
-        String whileValue = (String) node.jjtGetChild(0).jjtAccept(this, b);
-        m_writer.println(b.lTrue);
+        String cases = genLabel();
+        m_writer.println("goto " + cases);
+        String whileValue = (String) node.jjtGetChild(0).jjtAccept(this, data);
         HashMap<String, String> caseValues = new HashMap<>();
-        String label = b.lTrue;
+
         for (int i = 1; i < node.jjtGetNumChildren(); i++) {
-
+            String caseLabel = genLabel();
+            m_writer.println(caseLabel);
             String caseValue = (String) node.jjtGetChild(i).jjtAccept(this, data);
-
-            caseValues.put(caseValue, label);
-            if (i != node.jjtGetNumChildren() - 1)
-                label = genLabel();
-            else
-                label = begin;
-            m_writer.println(label);
-
+            caseValues.put(caseValue, caseLabel);
         }
+        m_writer.println(cases);
 
         for (Map.Entry<String, String> caseValue : caseValues.entrySet()) {
             if (!caseValue.getKey().equals("default"))

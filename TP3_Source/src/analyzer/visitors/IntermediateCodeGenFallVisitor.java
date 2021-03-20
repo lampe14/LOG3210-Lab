@@ -366,25 +366,19 @@ public class IntermediateCodeGenFallVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTSwitchStmt node, Object data) {
-        String begin = genLabel();
-        IntermediateCodeGenFallVisitor.BoolLabel b = new BoolLabel(genLabel(), (String) data);
-        m_writer.println("goto " + begin);
-        String whileValue = (String) node.jjtGetChild(0).jjtAccept(this, b);
-        m_writer.println(b.lTrue);
+        String cases = genLabel();
+        m_writer.println("goto " + cases);
+        String whileValue = (String) node.jjtGetChild(0).jjtAccept(this, data);
         HashMap<String, String> caseValues = new HashMap<>();
-        String label = b.lTrue;
+
         for (int i = 1; i < node.jjtGetNumChildren(); i++) {
 
+            String caseLabel = genLabel();
+            m_writer.println(caseLabel);
             String caseValue = (String) node.jjtGetChild(i).jjtAccept(this, data);
-
-            caseValues.put(caseValue, label);
-            if (i != node.jjtGetNumChildren() - 1)
-                label = genLabel();
-            else
-                label = begin;
-            m_writer.println(label);
-
+            caseValues.put(caseValue, caseLabel);
         }
+        m_writer.println(cases);
 
         for (Map.Entry<String, String> caseValue : caseValues.entrySet()) {
             if (!caseValue.getKey().equals("default"))
