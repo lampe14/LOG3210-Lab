@@ -123,7 +123,6 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTWhileStmt node, Object data) {
-
         String begin = genLabel();
         BoolLabel b = new BoolLabel(genLabel(), (String) data);
         m_writer.println(begin);
@@ -143,11 +142,10 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
             m_writer.println(id + " = " + expr);
         } else {
             BoolLabel b = new BoolLabel(genLabel(), genLabel());
-            String s = (String) data;
             node.jjtGetChild(1).jjtAccept(this, b);
             m_writer.println(b.lTrue);
             m_writer.println(id + " = " + 1);
-            m_writer.println("goto " + s);
+            m_writer.println("goto " + data);
             m_writer.println(b.lFalse);
             m_writer.println(id + " = " + 0);
         }
@@ -171,11 +169,11 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
      */
     public Object codeExtAddMul(SimpleNode node, Object data, Vector<String> ops) {
         if (node.jjtGetNumChildren() == 2) {
-            String id = genId();
+            String temp = genId();
             String e1 = (String) node.jjtGetChild(0).jjtAccept(this, data);
             String e2 = (String) node.jjtGetChild(1).jjtAccept(this, data);
-            m_writer.println(id + " = " + e1 + " " + ops.get(0) + " " + e2);
-            return id;
+            m_writer.println(temp + " = " + e1 + " " + ops.get(0) + " " + e2);
+            return temp;
         } else
             return node.jjtGetChild(0).jjtAccept(this, data);
     }
@@ -196,14 +194,13 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
     public Object visit(ASTUnaExpr node, Object data) {
         if (!node.getOps().isEmpty()) {
             String expr = (String) node.jjtGetChild(0).jjtAccept(this, data);
-            String id = genId();
-            m_writer.println(id + " = " + node.getOps().get(0) + " " + expr);
-            for (int i = 1; i < node.getOps().size(); ++i) {
-                expr = genId();
-                m_writer.println(expr + " = " + node.getOps().get(i) + " " + id);
-                id = expr;
+            String temp = null;
+            for (int i = 0; i < node.getOps().size(); ++i) {
+                temp = genId();
+                m_writer.println(temp + " = " + node.getOps().get(i) + " " + expr);
+                expr = temp;
             }
-            return id;
+            return temp;
         } else
             return node.jjtGetChild(0).jjtAccept(this, data);
     }
@@ -242,9 +239,9 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTCompExpr node, Object data) {
         if (node.jjtGetNumChildren() > 1) {
+            BoolLabel b = (BoolLabel) data;
             String e1 = (String) node.jjtGetChild(0).jjtAccept(this, null);
             String e2 = (String) node.jjtGetChild(1).jjtAccept(this, null);
-            BoolLabel b = (BoolLabel) data;
             m_writer.println("if " +  e1 + " " + node.getValue() + " " + e2 + " goto " + b.lTrue);
             m_writer.println("goto " + b.lFalse);
             return null;
@@ -262,9 +259,7 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
     public Object visit(ASTNotExpr node, Object data) {
         if (!node.getOps().isEmpty() && (node.getOps().size() % 2 != 0)) {
             BoolLabel b = (BoolLabel) data;
-            BoolLabel b1 = new BoolLabel("", "");
-            b1.lTrue = b.lFalse;
-            b1.lFalse = b.lTrue;
+            BoolLabel b1 = new BoolLabel(b.lFalse, b.lTrue);
             return node.jjtGetChild(0).jjtAccept(this, b1);
         }
 
@@ -282,7 +277,7 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
      */
     @Override
     public Object visit(ASTBoolValue node, Object data) {
-        if (node.getValue() == true)
+        if (node.getValue())
             m_writer.println("goto " + ((BoolLabel) data).lTrue);
         else
             m_writer.println("goto " + ((BoolLabel) data).lFalse);
