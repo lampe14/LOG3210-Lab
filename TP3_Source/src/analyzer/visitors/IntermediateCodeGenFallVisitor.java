@@ -8,6 +8,7 @@ import sun.awt.Symbol;
 import java.awt.*;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 
@@ -108,19 +109,13 @@ public class IntermediateCodeGenFallVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTIfStmt node, Object data) {
         if (node.jjtGetNumChildren() == 2) {
-//            BoolLabel boolLabel = new BoolLabel(genLabel(), (String) data);
-//            node.jjtGetChild(0).jjtAccept(this, boolLabel);
-//            m_writer.println(boolLabel.lTrue);
-//            node.jjtGetChild(1).jjtAccept(this, data);
-
             BoolLabel boolLabel = new BoolLabel("fall", (String) data);
             node.jjtGetChild(0).jjtAccept(this, boolLabel);
             node.jjtGetChild(1).jjtAccept(this, data);
 
         } else {
-            BoolLabel boolLabel = new BoolLabel(genLabel(), genLabel());
+            BoolLabel boolLabel = new BoolLabel("fall", genLabel());
             node.jjtGetChild(0).jjtAccept(this, boolLabel);
-            m_writer.println(boolLabel.lTrue);
             node.jjtGetChild(1).jjtAccept(this, data);
             m_writer.println("goto " + data);
             m_writer.println(boolLabel.lFalse);
@@ -227,23 +222,22 @@ public class IntermediateCodeGenFallVisitor implements ParserVisitor {
             BoolLabel b2 = new BoolLabel("", "");
             if (node.getOps().get(0).equals("&&")) {
                 b1.lTrue = "fall";
-                if(b.lFalse == "fall")
+                if(b.lFalse.equals("fall"))
                     b1.lFalse = genLabel();
-
                 else
                     b1.lFalse = b.lFalse;
 
                 b2.lTrue = b.lTrue;
                 b2.lFalse = b.lFalse;
 
-                if (b.lFalse == "fall") {
+                if (b.lFalse.equals("fall")) {
                     node.jjtGetChild(0).jjtAccept(this, b1);
-                    node.jjtGetChild(0).jjtAccept(this, b2);
+                    node.jjtGetChild(1).jjtAccept(this, b2);
                     m_writer.println(b1.lFalse);
                 }
                 else {
                     node.jjtGetChild(0).jjtAccept(this, b1);
-                    node.jjtGetChild(0).jjtAccept(this, b2);
+                    node.jjtGetChild(1).jjtAccept(this, b2);
                 }
             }
             else if (node.getOps().get(0).equals("||")) {
@@ -367,26 +361,50 @@ public class IntermediateCodeGenFallVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTSwitchStmt node, Object data) {
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
+        String begin = genLabel();
+        IntermediateCodeGenFallVisitor.BoolLabel boolLabel = new BoolLabel(genLabel(), (String) data);
+        m_writer.println("goto " + begin);
+        String whileValue = (String) node.jjtGetChild(0).jjtAccept(this, boolLabel);
+        m_writer.println(boolLabel.lTrue);
+        HashMap<String, String> caseValues = new HashMap<>();
+        String label = boolLabel.lTrue;
+        for (int i = 1; i < node.jjtGetNumChildren(); i++) {
+
+            String caseValue = (String) node.jjtGetChild(i).jjtAccept(this, data);
+
+            caseValues.put(caseValue, label);
+            if (i != node.jjtGetNumChildren() - 1)
+                label = genLabel();
+            else
+                label = begin;
+            m_writer.println(label);
+
         }
+
+        for (Map.Entry<String, String> caseValue : caseValues.entrySet()) {
+            if (!caseValue.getKey().equals("default"))
+                m_writer.println("if " + whileValue + " == " + caseValue.getKey() + " goto " + caseValue.getValue());
+        }
+
+        if (caseValues.containsKey("default"))
+            m_writer.println("goto " + caseValues.get("default"));
+
         return null;
     }
 
     @Override
     public Object visit(ASTCaseStmt node, Object data) {
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
-        }
-        return null;
+        String value = (String) node.jjtGetChild(0).jjtAccept(this, data);
+        node.jjtGetChild(1).jjtAccept(this, data);
+        m_writer.println("goto " + data);
+        return value;
     }
 
     @Override
     public Object visit(ASTDefaultStmt node, Object data) {
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
-        }
-        return null;
+        node.jjtGetChild(0).jjtAccept(this, data);
+        m_writer.println("goto " + data);
+        return "default";
     }
 
     //des outils pour vous simplifier la vie et vous enligner dans le travail
