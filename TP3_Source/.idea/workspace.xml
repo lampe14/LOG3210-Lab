@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8a87a1da-c593-42b1-b706-ab3aadee0099" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../TP3_LOG3210.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ant.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/externalDependencies.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/file.template.settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/fileTemplates/includes/File Header.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/markdown-navigator.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/markdown-navigator/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Langage.jjt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReadMe.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/.idea/TP3_Source.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_arith_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_arith_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_arith_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_arith_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_arith_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_arith_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_arith_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_arith_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_arith_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_arith_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_arith_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_bool_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_bool_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_bool_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_bool_11.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_bool_12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_bool_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_bool_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_bool_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_bool_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_bool_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_bool_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_bool_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_bool_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_compare_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_compare_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_compare_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_compare_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_condif_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_condif_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_condif_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_condif_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_condif_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_condif_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_condif_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_condif_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_condwhile_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_condwhile_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_condwhile_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_condwhile_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_condwhile_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_condwhile_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_switch_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_switch_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_switch_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenFallTest/result/test_switch_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_arith_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_arith_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_arith_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_arith_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_arith_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_arith_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_arith_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_arith_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_arith_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_arith_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_arith_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_bool_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_bool_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_bool_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_bool_11.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_bool_12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_bool_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_bool_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_bool_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_bool_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_bool_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_bool_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_bool_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_bool_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_compare_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_compare_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_compare_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_compare_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_condif_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_condif_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_condif_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_condif_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_condif_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_condif_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_condif_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_condif_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_condwhile_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_condwhile_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_condwhile_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_condwhile_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_condwhile_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_condwhile_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_switch_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_switch_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_switch_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/IntermediateCodeGenTest/result/test_switch_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/arith1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/arith2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/arith3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/arith4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/arith5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/assign1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/bool1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/bool2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/bool3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/bool4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/bool5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/bool6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/bool7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/cond1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/cond2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/cond3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/cond4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/cond5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/switch1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP3_Source/test-suite/SemantiqueTest/result/switch2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Template.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/bin/javacc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/bin/javacc.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/bin/jjdoc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/bin/jjdoc.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/bin/jjrun" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/bin/jjtree" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/bin/jjtree.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/bin/lib/javacc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/CORBA-IDL/Hello.idl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/CORBA-IDL/IDL.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/CORBA-IDL/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/GUIParsing/ParserVersion/CalcGUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/GUIParsing/ParserVersion/CalcInput.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/GUIParsing/ParserVersion/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/GUIParsing/ParserVersion/ProducerConsumer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/GUIParsing/ParserVersion/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/GUIParsing/ParserVersion/TokenCollector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/GUIParsing/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/GUIParsing/TokenMgrVersion/CalcGUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/GUIParsing/TokenMgrVersion/CalcInput.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/GUIParsing/TokenMgrVersion/CharCollector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/GUIParsing/TokenMgrVersion/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/GUIParsing/TokenMgrVersion/MyLexer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/GUIParsing/TokenMgrVersion/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTAddNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTAndNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTAssignment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTBitwiseAndNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTBitwiseComplNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTBitwiseOrNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTBitwiseXorNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTBlock.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTCompilationUnit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTDivNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTEQNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTFalseNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTGENode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTGTNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTId.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTIfStatement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTIntConstNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTLENode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTLTNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTModNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTMulNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTNENode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTNotNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTOrNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTReadStatement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTStatementExpression.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTSubtractNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTTrueNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTVarDeclaration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTWhileStatement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/ASTWriteStatement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/MyNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/Node.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/SPL.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/SPL.jjt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/fact.spl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/odd.spl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Interpreter/sqrt.spl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/ASTMyID.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/ASTMyID.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/ASTMyOtherID.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/ASTMyOtherID.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/EG4DumpVisitor.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/EG4DumpVisitor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/MyErrorHandler.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/MyErrorHandler.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/build.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/eg1.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/eg1.jjt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/eg2.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/eg2.jjt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/eg3.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/eg3.jjt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/eg4.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/cpp/eg4.jjt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/java/ASTMyID.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/java/ASTMyOtherID.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/java/Eg4DumpVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/java/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/java/build.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/java/eg1.jjt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/java/eg2.jjt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/java/eg3.jjt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JJTreeExamples/java/eg4.jjt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaCCGrammar/JavaCC.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/1.5/Java1.5.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/1.5/JavaGenerics.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/1.5/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/1.5/MyToken.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/1.5/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/1.5/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/1.5/build.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/Java1.0.2.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/Java1.0.2LS.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/Java1.1-cpp.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/Java1.1.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/Java1.1noLA.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/OPTIMIZING" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/cpp/Java1.1.jjt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/cpp/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/cpp/allmain.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/cpp/main.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/cpp/myparser.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/cpp/mytm.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/JavaGrammars/cpp/token_base.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Lookahead/Example1.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Lookahead/Example10.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Lookahead/Example2.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Lookahead/Example3.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Lookahead/Example4.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Lookahead/Example5.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Lookahead/Example6.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Lookahead/Example7.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Lookahead/Example8.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Lookahead/Example9.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Lookahead/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/MailProcessing/Digest.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/MailProcessing/Faq.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/MailProcessing/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/MailProcessing/sampleMailFile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Obfuscator/Globals.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Obfuscator/IdsFile.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Obfuscator/Java1.1.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Obfuscator/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Obfuscator/MapFile.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Obfuscator/Obfuscator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Obfuscator/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Obfuscator/input/package1/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Obfuscator/input/package2/Incr.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Obfuscator/maps" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Obfuscator/nochangeids" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Obfuscator/useids" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/SimpleExamples/IdList.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/SimpleExamples/NL_Xlator.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/SimpleExamples/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/SimpleExamples/Simple1.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/SimpleExamples/Simple2.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/SimpleExamples/Simple3.jj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Transformer/ASTCompilationUnit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Transformer/ASTSpecialBlock.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Transformer/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Transformer/SimpleNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Transformer/ToyJava.jjt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/Transformer/divide.toy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/VTransformer/AddAcceptVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/VTransformer/Java1.1.jjt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/VTransformer/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/VTransformer/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/VTransformer/SimpleNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/examples/VTransformer/UnparseVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/CharStream.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/JJDoc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/JJTree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/JavaCC.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/JavaCC.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/apiroutines.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/commandline.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/docindex.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/errorrecovery.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/features.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/installhelp.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/javacc-c++-releasenotes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/javaccgrm.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/javaccreleasenotes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/jjdocreleasenotes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/jjtree-c++-releasenotes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/jjtreeREADME.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/jjtreeintro.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/jjtreereleasenotes.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/lexertips.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/lookahead.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/mailinglist.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/simpleREADME.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/support.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/doc/tokenmanager.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/javacc-7.0.2/www/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/analyzer/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/analyzer/SemantiqueError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/analyzer/ast/ASTAddExpr.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/analyzer/ast/ASTBoolExpr.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/analyzer/ast/ASTBoolValue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/analyzer/ast/ASTCompExpr.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/analyzer/ast/ASTDeclaration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/analyzer/ast/ASTExpr.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/analyzer/ast/ASTIdentifier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/analyzer/ast/ASTIntValue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/analyzer/ast/ASTMulExpr.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/analyzer/ast/ASTNotExpr.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/analyzer/ast/ASTUnaExpr.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/analyzer/visitors/IntermediateCodeGenFallVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/analyzer/visitors/IntermediateCodeGenVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/analyzer/visitors/SemantiqueVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_arith_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_arith_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_arith_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_arith_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_arith_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_arith_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_arith_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_arith_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_arith_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_arith_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_arith_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_bool_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_bool_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_bool_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_bool_11.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_bool_12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_bool_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_bool_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_bool_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_bool_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_bool_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_bool_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_bool_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_bool_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_compare_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_compare_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_compare_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_compare_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_condif_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_condif_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_condif_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_condif_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_condif_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_condif_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_condif_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_condif_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_condwhile_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_condwhile_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_condwhile_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_condwhile_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_condwhile_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_condwhile_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_switch_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_switch_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_switch_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/data/test_switch_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_arith_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_arith_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_arith_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_arith_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_arith_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_arith_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_arith_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_arith_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_arith_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_arith_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_arith_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_bool_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_bool_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_bool_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_bool_11.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_bool_12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_bool_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_bool_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_bool_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_bool_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_bool_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_bool_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_bool_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_bool_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_compare_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_compare_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_compare_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_compare_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_condif_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_condif_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_condif_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_condif_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_condif_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_condif_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_condif_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_condif_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_condwhile_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_condwhile_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_condwhile_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_condwhile_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_condwhile_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_condwhile_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_switch_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_switch_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_switch_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenFallTest/expected/test_switch_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_arith_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_arith_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_arith_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_arith_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_arith_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_arith_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_arith_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_arith_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_arith_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_arith_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_arith_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_bool_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_bool_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_bool_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_bool_11.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_bool_12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_bool_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_bool_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_bool_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_bool_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_bool_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_bool_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_bool_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_bool_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_compare_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_compare_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_compare_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_compare_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_condif_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_condif_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_condif_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_condif_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_condif_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_condif_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_condif_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_condif_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_condwhile_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_condwhile_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_condwhile_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_condwhile_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_condwhile_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_condwhile_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_switch_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_switch_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_switch_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/data/test_switch_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_arith_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_arith_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_arith_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_arith_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_arith_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_arith_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_arith_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_arith_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_arith_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_arith_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_arith_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_bool_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_bool_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_bool_10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_bool_11.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_bool_12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_bool_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_bool_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_bool_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_bool_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_bool_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_bool_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_bool_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_bool_9.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_compare_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_compare_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_compare_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_compare_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_condif_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_condif_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_condif_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_condif_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_condif_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_condif_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_condif_6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_condif_7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_condwhile_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_condwhile_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_condwhile_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_condwhile_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_condwhile_4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_condwhile_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_switch_0.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_switch_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_switch_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/IntermediateCodeGenTest/expected/test_switch_3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/arith1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/arith2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/arith3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/arith4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/arith5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/assign1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/bool1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/bool2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/bool3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/bool4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/bool5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/bool6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/bool7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/cond1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/cond2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/cond3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/cond4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/cond5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/switch1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/data/switch2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/arith1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/arith2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/arith3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/arith4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/arith5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/assign1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/bool1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/bool2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/bool3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/bool4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/bool5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/bool6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/bool7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/cond1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/cond2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/cond3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/cond4.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/cond5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/switch1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-suite/SemantiqueTest/expected/switch2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/analyzer/TestRunner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/analyzer/TestSuite.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/analyzer/tests/BaseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/analyzer/tests/IntermediateCodeGenFallTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/analyzer/tests/IntermediateCodeGenTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/analyzer/tests/SemantiqueTest.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1px7KNfcpbLIpxzAY9M3VoT3E7O" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RunManager">
+    <configuration name="All in Template" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Template" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.All in Template" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8a87a1da-c593-42b1-b706-ab3aadee0099" name="Default Changelist" comment="" />
+      <created>1616112822810</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1616112822810</updated>
+      <workItem from="1616112824538" duration="39156000" />
+      <workItem from="1616248869155" duration="7504000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="249" y="0" key="#Project_Structure" timestamp="1616251341825">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="#Project_Structure/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1616251341825" />
+    <state x="97" y="376" width="1350" height="503" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1616253634240">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="97" y="376" width="1350" height="503" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1616253634240" />
+    <state x="78" y="259" width="1350" height="505" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1536.824@0.0.1536.824" timestamp="1616178274806" />
+    <state width="1493" height="159" key="GridCell.Tab.0.bottom" timestamp="1616256379831">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="159" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1616256379831" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1616182546832" />
+    <state width="1493" height="159" key="GridCell.Tab.0.center" timestamp="1616256379831">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="159" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1616256379831" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1616182546832" />
+    <state width="1493" height="159" key="GridCell.Tab.0.left" timestamp="1616256379830">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="159" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1616256379830" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1616182546832" />
+    <state width="1493" height="159" key="GridCell.Tab.0.right" timestamp="1616256379831">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="159" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1616256379831" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1616182546832" />
+    <state x="499" y="173" key="extract.method.dialog" timestamp="1616250805414">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="173" key="extract.method.dialog/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1616250805414" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1616116950267">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1616116950267" />
+  </component>
+</project>
