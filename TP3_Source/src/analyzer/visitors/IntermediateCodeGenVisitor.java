@@ -84,14 +84,12 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
         String s2 = (String) data;
         for (int i = 0; i < node.jjtGetNumChildren(); i++) {
             if (i != node.jjtGetNumChildren() -1) {
-                String label = genLabel();
-                data = label;
+                String s1 = genLabel();
+                node.jjtGetChild(i).jjtAccept(this, s1);
+                m_writer.println(s1);
             } else {
-                data = s2;
+                node.jjtGetChild(i).jjtAccept(this, s2);
             }
-            node.jjtGetChild(i).jjtAccept(this, data);
-            if (i != node.jjtGetNumChildren() -1)
-                m_writer.println(data);
         }
         return null;
     }

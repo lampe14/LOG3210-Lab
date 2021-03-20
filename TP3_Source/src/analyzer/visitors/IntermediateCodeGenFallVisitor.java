@@ -56,8 +56,7 @@ public class IntermediateCodeGenFallVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTProgram node, Object data)  {
         String label = genLabel();
-        data = label;
-        node.childrenAccept(this, data);
+        node.childrenAccept(this, label);
         m_writer.println(label);
         return null;
     }
