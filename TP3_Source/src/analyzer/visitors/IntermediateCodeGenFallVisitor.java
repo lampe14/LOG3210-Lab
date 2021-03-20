@@ -79,14 +79,11 @@ public class IntermediateCodeGenFallVisitor implements ParserVisitor {
         String s2 = (String) data;
         for (int i = 0; i < node.jjtGetNumChildren(); i++) {
             if (i != node.jjtGetNumChildren() -1) {
-                String label = genLabel();
-                data = label;
-            } else {
-                data = s2;
-            }
-            node.jjtGetChild(i).jjtAccept(this, data);
-            if (i != node.jjtGetNumChildren() -1)
-                m_writer.println(data);
+                String s1 = genLabel();
+                node.jjtGetChild(i).jjtAccept(this, s1);
+                m_writer.println(s1);
+            } else
+                node.jjtGetChild(i).jjtAccept(this, s2);
         }
         return null;
     }
@@ -165,14 +162,13 @@ public class IntermediateCodeGenFallVisitor implements ParserVisitor {
      */
     public Object codeExtAddMul(SimpleNode node, Object data, Vector<String> ops) {
         if (node.jjtGetNumChildren() == 2) {
-            String id = genId();
-            String left = (String) node.jjtGetChild(0).jjtAccept(this, data);
-            String right = (String) node.jjtGetChild(1).jjtAccept(this, data);
-            m_writer.println(id + " = " + left + " " + ops.get(0) + " " + right);
-            return id;
-        } else {
+            String temp = genId();
+            String e1 = (String) node.jjtGetChild(0).jjtAccept(this, data);
+            String e2 = (String) node.jjtGetChild(1).jjtAccept(this, data);
+            m_writer.println(temp + " = " + e1 + " " + ops.get(0) + " " + e2);
+            return temp;
+        } else
             return node.jjtGetChild(0).jjtAccept(this, data);
-        }
     }
 
     @Override
@@ -218,39 +214,31 @@ public class IntermediateCodeGenFallVisitor implements ParserVisitor {
 
                 b2.lTrue = b.lTrue;
                 b2.lFalse = b.lFalse;
+                node.jjtGetChild(0).jjtAccept(this, b1);
+                node.jjtGetChild(1).jjtAccept(this, b2);
 
-                if (b.lFalse.equals("fall")) {
-                    node.jjtGetChild(0).jjtAccept(this, b1);
-                    node.jjtGetChild(1).jjtAccept(this, b2);
+                if (b.lFalse.equals("fall"))
                     m_writer.println(b1.lFalse);
-                }
-                else {
-                    node.jjtGetChild(0).jjtAccept(this, b1);
-                    node.jjtGetChild(1).jjtAccept(this, b2);
-                }
+
             }
             else if (node.getOps().get(0).equals("||")) {
                 if (b.lTrue.equals("fall"))
                     b1.lTrue = genLabel();
                 else
                     b1.lTrue = b.lTrue;
+
                 b1.lFalse = "fall";
                 b2.lTrue = b.lTrue;
                 b2.lFalse = b.lFalse;
-                if (b.lTrue.equals("fall")) {
-                    node.jjtGetChild(0).jjtAccept(this, b1);
-                    node.jjtGetChild(1).jjtAccept(this, b2);
+                node.jjtGetChild(0).jjtAccept(this, b1);
+                node.jjtGetChild(1).jjtAccept(this, b2);
+
+                if (b.lTrue.equals("fall")) ;
                     m_writer.println(b1.lTrue);
-                }
-                else {
-                    node.jjtGetChild(0).jjtAccept(this, b1);
-                    node.jjtGetChild(1).jjtAccept(this, b2);
-                }
             }
             return null;
-        } else {
+        } else
             return node.jjtGetChild(0).jjtAccept(this, data);
-        }
     }
 
 
