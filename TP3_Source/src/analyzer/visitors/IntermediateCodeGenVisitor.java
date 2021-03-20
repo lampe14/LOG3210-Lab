@@ -1,11 +1,6 @@
 package analyzer.visitors;
 
 import analyzer.ast.*;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-import sun.awt.Symbol;
-
-import java.awt.*;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
@@ -262,7 +257,6 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
             BoolLabel b1 = new BoolLabel(b.lFalse, b.lTrue);
             return node.jjtGetChild(0).jjtAccept(this, b1);
         }
-
         return node.jjtGetChild(0).jjtAccept(this, data);
     }
 
