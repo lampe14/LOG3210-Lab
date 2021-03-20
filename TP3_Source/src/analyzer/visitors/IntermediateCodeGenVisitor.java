@@ -8,6 +8,7 @@ import sun.awt.Symbol;
 import java.awt.*;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 
@@ -55,8 +56,7 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
     @Override
     public Object visit(ASTProgram node, Object data)  {
         String label = genLabel();
-        data = label;
-        node.childrenAccept(this, data);
+        node.childrenAccept(this, label);
         m_writer.println(label);
         return null;
     }
@@ -129,7 +129,6 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
 
         String begin = genLabel();
         BoolLabel boolLabel = new BoolLabel(genLabel(), (String) data);
-//        node.jjtGetChild(1).jjtAccept(this, begin);
         m_writer.println(begin);
         node.jjtGetChild(0).jjtAccept(this, boolLabel);
         m_writer.println(boolLabel.lTrue);
@@ -322,26 +321,50 @@ public class IntermediateCodeGenVisitor implements ParserVisitor {
 
     @Override
     public Object visit(ASTSwitchStmt node, Object data) {
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
+        String begin = genLabel();
+        BoolLabel boolLabel = new BoolLabel(genLabel(), (String) data);
+        m_writer.println("goto " + begin);
+        String whileValue = (String) node.jjtGetChild(0).jjtAccept(this, boolLabel);
+        m_writer.println(boolLabel.lTrue);
+        HashMap<String, String> caseValues = new HashMap<>();
+        String label = boolLabel.lTrue;
+        for (int i = 1; i < node.jjtGetNumChildren(); i++) {
+
+            String caseValue = (String) node.jjtGetChild(i).jjtAccept(this, data);
+
+            caseValues.put(caseValue, label);
+            if (i != node.jjtGetNumChildren() - 1)
+                label = genLabel();
+            else
+                label = begin;
+            m_writer.println(label);
+
         }
+
+        for (Map.Entry<String, String> caseValue : caseValues.entrySet()) {
+            if (!caseValue.getKey().equals("default"))
+                m_writer.println("if " + whileValue + " == " + caseValue.getKey() + " goto " + caseValue.getValue());
+        }
+
+        if (caseValues.containsKey("default"))
+            m_writer.println("goto " + caseValues.get("default"));
+
         return null;
     }
 
     @Override
     public Object visit(ASTCaseStmt node, Object data) {
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
-        }
-        return null;
+        String value = (String) node.jjtGetChild(0).jjtAccept(this, data);
+        node.jjtGetChild(1).jjtAccept(this, data);
+        m_writer.println("goto " + data);
+        return value;
     }
 
     @Override
     public Object visit(ASTDefaultStmt node, Object data) {
-        for (int i = 0; i < node.jjtGetNumChildren(); i++) {
-            node.jjtGetChild(i).jjtAccept(this, data);
-        }
-        return null;
+        node.jjtGetChild(0).jjtAccept(this, data);
+        m_writer.println("goto " + data);
+        return "default";
     }
 
     //des outils pour vous simplifier la vie et vous enligner dans le travail
