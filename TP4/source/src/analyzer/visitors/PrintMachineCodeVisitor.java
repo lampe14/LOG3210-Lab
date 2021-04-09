@@ -82,6 +82,7 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
 
         // TODO: Modify CODE to add the needed MachLine.
         //       here the type of Assignment is "assigned = left op right"
+        CODE.add(new MachLine(op, assign, left, right));
         return null;
     }
 
@@ -95,7 +96,7 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         // TODO: Modify CODE to add the needed MachLine.
         //       here the type of Assignment is "assigned = - right"
         //       suppose the left part to be the constant #O
-
+        CODE.add(new MachLine("MIN", assign, "#0", right));
         return null;
     }
 
@@ -109,6 +110,7 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         // TODO: Modify CODE to add the needed MachLine.
         //       here the type of Assignment is "assigned = right"
         //       suppose the left part to be the constant #O
+        CODE.add(new MachLine("ADD", assign, "#0", right));
         return null;
     }
 
@@ -216,10 +218,29 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
 
     private void compute_LifeVar() {
         // TODO: Implement LifeVariable algorithm on the CODE array (for basic bloc)
+
     }
 
     private void compute_NextUse() {
         // TODO: Implement NextUse algorithm on the CODE array (for basic bloc)
+        for (MachLine line: CODE) {
+            line.Next_IN.nextuse.clear();
+            line.Next_OUT.nextuse.clear();
+        }
+
+        for (int i = CODE.size()-1; i >=0; i--) {
+            if (i < (CODE.size()-1))
+                CODE.get(i).Next_OUT.nextuse =  CODE.get(i+1).Next_IN.nextuse;
+
+            for (Map.Entry<String, ArrayList<Integer>> entry: CODE.get(i).Next_OUT.nextuse.entrySet()) {
+                if (!CODE.get(i).DEF.contains(entry.getKey()))
+                    CODE.get(i).Next_IN.nextuse.putIfAbsent(entry.getKey(), entry.getValue());
+            }
+
+            for (String ref: CODE.get(i).REF) {
+                CODE.get(i).Next_IN.nextuse.putIfAbsent(ref, new ArrayList());
+            }
+        }
     }
 
 
