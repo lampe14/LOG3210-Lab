@@ -82,6 +82,7 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
 
         // TODO: Modify CODE to add the needed MachLine.
         //       here the type of Assignment is "assigned = left op right"
+        CODE.add(new MachLine(op, assign,left, right));
         return null;
     }
 
@@ -91,6 +92,8 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         // On n'a rien a transférer aux enfants
         String assign = (String) node.jjtGetChild(0).jjtAccept(this, null);
         String right  = (String) node.jjtGetChild(1).jjtAccept(this, null);
+
+        CODE.add(new MachLine("MIN", assign, "0", right));
 
         // TODO: Modify CODE to add the needed MachLine.
         //       here the type of Assignment is "assigned = - right"
@@ -106,6 +109,7 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         String assign = (String) node.jjtGetChild(0).jjtAccept(this, null);
         String right  = (String) node.jjtGetChild(1).jjtAccept(this, null);
 
+        CODE.add(new MachLine("MIN", assign, "0", right));
         // TODO: Modify CODE to add the needed MachLine.
         //       here the type of Assignment is "assigned = right"
         //       suppose the left part to be the constant #O
@@ -216,6 +220,20 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
 
     private void compute_LifeVar() {
         // TODO: Implement LifeVariable algorithm on the CODE array (for basic bloc)
+        for(MachLine line: CODE) {
+            line.Life_IN.clear();
+            line.Life_OUT.clear();
+        }
+        CODE.get(CODE.size()).Life_OUT = new HashSet<>(RETURNED);
+
+        for (int i=CODE.size()-1; i >= 0; i--) {
+            if(i < (CODE.size() - 1))
+                CODE.get(i).Life_OUT = CODE.get(i+1).Life_IN;
+
+            CODE.get(i).Life_OUT.remove(CODE.get(i).DEF);
+            CODE.get(i).Life_OUT.addAll(CODE.get(i).REF);
+            CODE.get(i).Life_IN = CODE.get(i).Life_OUT;
+        }
     }
 
     private void compute_NextUse() {
