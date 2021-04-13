@@ -225,7 +225,7 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
             line.Life_IN.clear();
             line.Life_OUT.clear();
         }
-        CODE.get(CODE.size()).Life_OUT = new HashSet<>(RETURNED);
+        CODE.get(CODE.size()-1).Life_OUT = new HashSet<>(RETURNED);
 
         for (int i=CODE.size()-1; i >= 0; i--) {
             if(i < (CODE.size() - 1))
@@ -267,18 +267,26 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
     // from the memory to be accessible in REGISTERS
     public String choose_register(String var, HashSet<String> life, NextUse next, boolean load_if_not_found) {
         // /!\ TODO this function should generate the LD and ST when needed
-
         // TODO: if var is a constant (starts with '#'), return var
-
+        if (var.charAt(0)=='#')
+            return var;
         // TODO: if REGISTERS contains var, return "R"+index
-
+        else if (REGISTERS.contains(var))
+            return ("R"+ REGISTERS.indexOf(var));
         // TODO: if REGISTERS size is not max (<REG), add var to REGISTERS and return "R"+index
-
+        else if (REGISTERS.size() < REG) {
+            REGISTERS.add(var);
+            return ("R"+ REGISTERS.indexOf(var));
+        }
         // TODO: if REGISTERS has max size,
         //          put var in space of an other variable which is not used anymore
         //          or
         //          put var in space of var which as the largest next-use
-
+//        else if (REGISTERS.size() == REG) {
+//            for (String register: REGISTERS) {
+//
+//            }
+//        }
         return null;
     }
 
