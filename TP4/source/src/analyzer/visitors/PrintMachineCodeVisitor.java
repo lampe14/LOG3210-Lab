@@ -212,8 +212,8 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         }
         public String toString() {
             String buff = "";
-            buff += "// Life_IN  : " +  Life_IN.toString() +"\n";
-            buff += "// Life_OUT : " +  Life_OUT.toString() +"\n";
+            buff += "// Life_IN  : " +  set_ordered(Life_IN).toString() +"\n";
+            buff += "// Life_OUT : " +  set_ordered(Life_OUT).toString() +"\n";
             buff += "// Next_IN  : " +  Next_IN.toString() +"\n";
             buff += "// Next_OUT : " +  Next_OUT.toString() +"\n";
             return buff;
