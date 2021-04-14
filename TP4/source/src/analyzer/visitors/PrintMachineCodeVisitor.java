@@ -110,6 +110,7 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         String right  = (String) node.jjtGetChild(1).jjtAccept(this, null);
 
 //        CODE.add(new MachLine("MIN", assign, "0", right));
+
         // TODO: Modify CODE to add the needed MachLine.
         //       here the type of Assignment is "assigned = right"
         //       suppose the left part to be the constant #O
@@ -257,7 +258,9 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
             }
 
             for (String ref: CODE.get(i).REF) {
-                CODE.get(i).Next_IN.nextuse.putIfAbsent(ref, new ArrayList());
+                ArrayList<Integer> current_line = new ArrayList();
+                current_line.add(i);
+                CODE.get(i).Next_IN.nextuse.putIfAbsent(ref, current_line);
             }
         }
     }
