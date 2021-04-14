@@ -301,6 +301,25 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         for (int i = 0; i < CODE.size(); i++) { // print the output
             m_writer.println("// Step " + i);
 
+            String left = CODE.get(i).LEFT;
+            String right = CODE.get(i).RIGHT;
+            if (!REGISTERS.contains(CODE.get(i).LEFT)) {
+                m_writer.print("LD ");
+                left = choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
+                m_writer.print(left);
+                m_writer.println(", " + CODE.get(i).LEFT);
+            }
+            if (!REGISTERS.contains(CODE.get(i).RIGHT)) {
+                m_writer.print("LD ");
+                right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
+                m_writer.print(right);
+                m_writer.println(", " + CODE.get(i).RIGHT);
+            }
+
+            m_writer.print(CODE.get(i).OP + " ");
+            m_writer.print(choose_register(CODE.get(i).ASSIGN, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true));
+            m_writer.println(", " + left + ", " + right);
+
             m_writer.println(CODE.get(i));
         }
     }
