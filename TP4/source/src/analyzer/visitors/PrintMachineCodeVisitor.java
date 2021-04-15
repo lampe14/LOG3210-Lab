@@ -244,23 +244,27 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
     private void compute_NextUse() {
         // TODO: Implement NextUse algorithm on the CODE array (for basic bloc)
         for (MachLine line: CODE) {
-            line.Next_IN.nextuse.clear();
-            line.Next_OUT.nextuse.clear();
+            line.Next_IN = new NextUse();
+            line.Next_OUT = new NextUse();
         }
 
         for (int i = CODE.size()-1; i >=0; i--) {
             if (i < (CODE.size()-1))
-                CODE.get(i).Next_OUT.nextuse =  CODE.get(i+1).Next_IN.nextuse;
+                CODE.get(i).Next_OUT =  CODE.get(i+1).Next_IN;
 
             for (Map.Entry<String, ArrayList<Integer>> entry: CODE.get(i).Next_OUT.nextuse.entrySet()) {
-                if (!CODE.get(i).DEF.contains(entry.getKey()))
-                    CODE.get(i).Next_IN.nextuse.putIfAbsent(entry.getKey(), entry.getValue());
+                if (!CODE.get(i).DEF.contains(entry.getKey())) {
+                    for (Integer value :entry.getValue())
+                        CODE.get(i).Next_IN.add(entry.getKey(), value);
+                }
             }
 
             for (String ref: CODE.get(i).REF) {
                 ArrayList<Integer> current_line = new ArrayList();
                 current_line.add(i);
-                CODE.get(i).Next_IN.nextuse.putIfAbsent(ref, current_line);
+                for (Integer line: current_line) {
+                    CODE.get(i).Next_IN.add(ref, line);
+                }
             }
         }
     }
@@ -288,11 +292,11 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         //          put var in space of an other variable which is not used anymore
         //          or
         //          put var in space of var which as the largest next-use
-//        else if (REGISTERS.size() == REG) {
-//            for (String register: REGISTERS) {
-//
-//            }
-//        }
+        else if (REGISTERS.size() == REG) {
+            for (String registerVal: REGISTERS) {
+
+            }
+        }
         return null;
     }
 
