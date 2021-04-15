@@ -235,7 +235,7 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
             HashSet<String> Clone_OUT = (HashSet<String>) CODE.get(i).Life_OUT.clone();
 //            HashSet<String> Clone_IN = (HashSet<String>) CODE.get(i).Life_IN.clone();
 
-            Clone_OUT.remove(CODE.get(i).DEF);
+            Clone_OUT.removeAll(CODE.get(i).DEF);
             Clone_OUT.addAll(CODE.get(i).REF);
             CODE.get(i).Life_IN = Clone_OUT;
         }
