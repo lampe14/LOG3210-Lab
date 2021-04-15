@@ -93,12 +93,10 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         String assign = (String) node.jjtGetChild(0).jjtAccept(this, null);
         String right  = (String) node.jjtGetChild(1).jjtAccept(this, null);
 
-//        CODE.add(new MachLine("MIN", assign, "0", right));
-
         // TODO: Modify CODE to add the needed MachLine.
         //       here the type of Assignment is "assigned = - right"
         //       suppose the left part to be the constant #O
-        CODE.add(new MachLine("MIN", assign, "#0", right));
+        CODE.add(new MachLine("-", assign, "#0", right));
         return null;
     }
 
@@ -109,12 +107,10 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         String assign = (String) node.jjtGetChild(0).jjtAccept(this, null);
         String right  = (String) node.jjtGetChild(1).jjtAccept(this, null);
 
-//        CODE.add(new MachLine("MIN", assign, "0", right));
-
         // TODO: Modify CODE to add the needed MachLine.
         //       here the type of Assignment is "assigned = right"
         //       suppose the left part to be the constant #O
-        CODE.add(new MachLine("ADD", assign, "#0", right));
+        CODE.add(new MachLine("+", assign, "#0", right));
         return null;
     }
 
@@ -233,7 +229,6 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
                 CODE.get(i).Life_OUT = CODE.get(i+1).Life_IN;
 
             HashSet<String> Clone_OUT = (HashSet<String>) CODE.get(i).Life_OUT.clone();
-//            HashSet<String> Clone_IN = (HashSet<String>) CODE.get(i).Life_IN.clone();
 
             Clone_OUT.removeAll(CODE.get(i).DEF);
             Clone_OUT.addAll(CODE.get(i).REF);
@@ -305,17 +300,15 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         for (int i = 0; i < CODE.size(); i++) { // print the output
             m_writer.println("// Step " + i);
 
-            String left = CODE.get(i).LEFT;
-            String right = CODE.get(i).RIGHT;
-            if (!REGISTERS.contains(CODE.get(i).LEFT)) {
+            String left = choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);;
+            String right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
+            if (!REGISTERS.contains(CODE.get(i).LEFT) && left.charAt(0) != '#') {
                 m_writer.print("LD ");
-                left = choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
                 m_writer.print(left);
                 m_writer.println(", " + CODE.get(i).LEFT);
             }
-            if (!REGISTERS.contains(CODE.get(i).RIGHT)) {
+            if (!REGISTERS.contains(CODE.get(i).RIGHT) && right.charAt(0) != '#') {
                 m_writer.print("LD ");
-                right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
                 m_writer.print(right);
                 m_writer.println(", " + CODE.get(i).RIGHT);
             }
