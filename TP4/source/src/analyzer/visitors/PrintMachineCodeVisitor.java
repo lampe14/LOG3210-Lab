@@ -300,24 +300,48 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         for (int i = 0; i < CODE.size(); i++) { // print the output
             m_writer.println("// Step " + i);
 
-            String left = choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);;
-            String right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
-            if (!REGISTERS.contains(CODE.get(i).LEFT) && left.charAt(0) != '#') {
-                m_writer.print("LD ");
-                m_writer.print(left);
-                m_writer.println(", " + CODE.get(i).LEFT);
+            String left = "";
+            String right = "";
+            if (!REGISTERS.contains(CODE.get(i).LEFT)) {
+                left = choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
+                if (left.charAt(0) != '#') {
+                    m_writer.print("LD ");
+                    m_writer.print(left);
+                    m_writer.println(", " + CODE.get(i).LEFT);
+                }
             }
-            if (!REGISTERS.contains(CODE.get(i).RIGHT) && right.charAt(0) != '#') {
-                m_writer.print("LD ");
-                m_writer.print(right);
-                m_writer.println(", " + CODE.get(i).RIGHT);
+            if (!REGISTERS.contains(CODE.get(i).RIGHT)) {
+                right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
+                if (right.charAt(0) != '#') {
+                    m_writer.print("LD ");
+                    m_writer.print(right);
+                    m_writer.println(", " + CODE.get(i).RIGHT);
+                }
             }
 
             m_writer.print(CODE.get(i).OP + " ");
             m_writer.print(choose_register(CODE.get(i).ASSIGN, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true));
+            left = choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
+            right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
             m_writer.println(", " + left + ", " + right);
 
+            if (CODE.get(i).ASSIGN.charAt(0) != 't') {
+                MODIFIED.add(CODE.get(i).ASSIGN);
+            }
+
             m_writer.println(CODE.get(i));
+        }
+
+        Map<String, String> st = new HashMap<>();
+        for (String modifiedVar: MODIFIED) {
+            st.put(choose_register(modifiedVar, new HashSet<>(), new NextUse(), true), modifiedVar);
+
+        }
+        SortedSet<String> keys = new TreeSet<>(st.keySet());
+        for (String key : keys) {
+            m_writer.print("ST ");
+            m_writer.print(st.get(key));
+            m_writer.println(", " + key);
         }
     }
 
