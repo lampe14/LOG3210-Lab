@@ -93,12 +93,10 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         String assign = (String) node.jjtGetChild(0).jjtAccept(this, null);
         String right  = (String) node.jjtGetChild(1).jjtAccept(this, null);
 
-//        CODE.add(new MachLine("MIN", assign, "0", right));
-
         // TODO: Modify CODE to add the needed MachLine.
         //       here the type of Assignment is "assigned = - right"
         //       suppose the left part to be the constant #O
-        CODE.add(new MachLine("MIN", assign, "#0", right));
+        CODE.add(new MachLine("-", assign, "#0", right));
         return null;
     }
 
@@ -109,12 +107,10 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         String assign = (String) node.jjtGetChild(0).jjtAccept(this, null);
         String right  = (String) node.jjtGetChild(1).jjtAccept(this, null);
 
-//        CODE.add(new MachLine("MIN", assign, "0", right));
-
         // TODO: Modify CODE to add the needed MachLine.
         //       here the type of Assignment is "assigned = right"
         //       suppose the left part to be the constant #O
-        CODE.add(new MachLine("ADD", assign, "#0", right));
+        CODE.add(new MachLine("+", assign, "#0", right));
         return null;
     }
 
@@ -233,7 +229,6 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
                 CODE.get(i).Life_OUT = CODE.get(i+1).Life_IN;
 
             HashSet<String> Clone_OUT = (HashSet<String>) CODE.get(i).Life_OUT.clone();
-//            HashSet<String> Clone_IN = (HashSet<String>) CODE.get(i).Life_IN.clone();
 
             Clone_OUT.removeAll(CODE.get(i).DEF);
             Clone_OUT.addAll(CODE.get(i).REF);
@@ -305,26 +300,48 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         for (int i = 0; i < CODE.size(); i++) { // print the output
             m_writer.println("// Step " + i);
 
-            String left = CODE.get(i).LEFT;
-            String right = CODE.get(i).RIGHT;
+            String left = "";
+            String right = "";
             if (!REGISTERS.contains(CODE.get(i).LEFT)) {
-                m_writer.print("LD ");
                 left = choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
-                m_writer.print(left);
-                m_writer.println(", " + CODE.get(i).LEFT);
+                if (left.charAt(0) != '#') {
+                    m_writer.print("LD ");
+                    m_writer.print(left);
+                    m_writer.println(", " + CODE.get(i).LEFT);
+                }
             }
             if (!REGISTERS.contains(CODE.get(i).RIGHT)) {
-                m_writer.print("LD ");
                 right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
-                m_writer.print(right);
-                m_writer.println(", " + CODE.get(i).RIGHT);
+                if (right.charAt(0) != '#') {
+                    m_writer.print("LD ");
+                    m_writer.print(right);
+                    m_writer.println(", " + CODE.get(i).RIGHT);
+                }
             }
 
             m_writer.print(CODE.get(i).OP + " ");
             m_writer.print(choose_register(CODE.get(i).ASSIGN, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true));
+            left = choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
+            right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
             m_writer.println(", " + left + ", " + right);
 
+            if (CODE.get(i).ASSIGN.charAt(0) != 't') {
+                MODIFIED.add(CODE.get(i).ASSIGN);
+            }
+
             m_writer.println(CODE.get(i));
+        }
+
+        Map<String, String> st = new HashMap<>();
+        for (String modifiedVar: MODIFIED) {
+            st.put(choose_register(modifiedVar, new HashSet<>(), new NextUse(), true), modifiedVar);
+
+        }
+        SortedSet<String> keys = new TreeSet<>(st.keySet());
+        for (String key : keys) {
+            m_writer.print("ST ");
+            m_writer.print(st.get(key));
+            m_writer.println(", " + key);
         }
     }
 
