@@ -289,9 +289,27 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         //          or
         //          put var in space of var which as the largest next-use
         else if (REGISTERS.size() == REG) {
-            for (String registerVal: REGISTERS) {
-
+            int max = 0;
+            int maxIndex = 0;
+            for (int i = 0; i < REGISTERS.size(); i++) {
+                if (!life.contains(REGISTERS.get(i))) { //check if register contains a dead variable
+                    if (load_if_not_found) {
+                        m_writer.print("LD ");
+                    }
+                    REGISTERS.set(i, var);
+                    return ("R" + i);
+                }
+                if (next.nextuse.containsKey(REGISTERS.get(i)) && next.nextuse.get(REGISTERS.get(i)).size() >= max) {
+                    max = next.nextuse.get(REGISTERS.get(i)).size();
+                    maxIndex = i;
+                }
             }
+            if (load_if_not_found) {
+                m_writer.print("LD ");
+            }
+            REGISTERS.set(maxIndex, var);
+            return ("R" + maxIndex);
+
         }
         return null;
     }
@@ -301,23 +319,23 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         for (int i = 0; i < CODE.size(); i++) { // print the output
             m_writer.println("// Step " + i);
 
-            String left = "";
-            String right = "";
+            String left;
+            String right;
             if (!REGISTERS.contains(CODE.get(i).LEFT)) {
-                left = choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, !REGISTERS.contains(CODE.get(i).LEFT));
+                left = choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
                 if (left.charAt(0) != '#')
                     m_writer.println(left + ", " + CODE.get(i).LEFT);
             }
             if (!REGISTERS.contains(CODE.get(i).RIGHT)) {
-                right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, !REGISTERS.contains(CODE.get(i).RIGHT));
+                right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
                 if (right.charAt(0) != '#')
                     m_writer.println(right + ", " + CODE.get(i).RIGHT);
             }
 
             m_writer.print(CODE.get(i).OP + " ");
             m_writer.print(choose_register(CODE.get(i).ASSIGN, CODE.get(i).Life_OUT, CODE.get(i).Next_OUT, false));
-            left = choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, !REGISTERS.contains(CODE.get(i).LEFT));
-            right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, !REGISTERS.contains(CODE.get(i).RIGHT));
+            left = choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, false);
+            right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, false);
             m_writer.println(", " + left + ", " + right);
 
             if (CODE.get(i).ASSIGN.charAt(0) != 't') {
