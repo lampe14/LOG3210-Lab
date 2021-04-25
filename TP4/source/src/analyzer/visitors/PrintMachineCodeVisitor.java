@@ -290,30 +290,31 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         //          put var in space of var which as the largest next-use
         else if (REGISTERS.size() == REG) {
             int max = 0;
-            int maxIndex = 0;
+            int chosenIndex = 0;
             for (int i = 0; i < REGISTERS.size(); i++) {
                 if (!life.contains(REGISTERS.get(i))) { //check if register contains a dead variable
-                    if (load_if_not_found) {
-                        m_writer.print("LD ");
-                    }
-                    REGISTERS.set(i, var);
-                    return ("R" + i);
+                    chosenIndex = i;
+                    break;
                 }
 
                 ArrayList<Integer> currentNextUse = next.nextuse.get(REGISTERS.get(i));
                 if (currentNextUse != null && currentNextUse.get(currentNextUse.size() - 1) >= max) {
                     max = currentNextUse.get(currentNextUse.size() - 1);
-                    maxIndex = i;
+                    chosenIndex = i;
                 } else if (currentNextUse == null) {
-                    maxIndex = i;
+                    chosenIndex = i;
                     break;
                 }
+            }
+            if (MODIFIED.contains(REGISTERS.get(chosenIndex)) && life.contains(REGISTERS.get(chosenIndex))) {
+                m_writer.println("ST "+ REGISTERS.get(chosenIndex) + ", R" + chosenIndex);
+                MODIFIED.remove(REGISTERS.get(chosenIndex));
             }
             if (load_if_not_found) {
                 m_writer.print("LD ");
             }
-            REGISTERS.set(maxIndex, var);
-            return ("R" + maxIndex);
+            REGISTERS.set(chosenIndex, var);
+            return ("R" + chosenIndex);
 
         }
         return null;
@@ -347,9 +348,9 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
                 m_writer.println(", " + left + ", " + right);
            }
 
-            if (CODE.get(i).ASSIGN.charAt(0) != 't') {
+//            if (CODE.get(i).ASSIGN.charAt(0) != 't') {
                 MODIFIED.add(CODE.get(i).ASSIGN);
-            }
+            //}
 
             m_writer.println(CODE.get(i));
         }
