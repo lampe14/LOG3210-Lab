@@ -278,10 +278,10 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
             return ("R"+ REGISTERS.indexOf(var));
         // TODO: if REGISTERS size is not max (<REG), add var to REGISTERS and return "R"+index
         if (REGISTERS.size() < REG) {
-            if(load_if_not_found){
-                m_writer.print("LD ");
-            }
             REGISTERS.add(var);
+            if(load_if_not_found){
+                m_writer.println("LD R" + (REGISTERS.size()-1) + ", " + var);
+            }
             return ("R"+ REGISTERS.indexOf(var));
         }
         // TODO: if REGISTERS has max size,
@@ -310,10 +310,10 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
                 m_writer.println("ST "+ REGISTERS.get(chosenIndex) + ", R" + chosenIndex);
                 MODIFIED.remove(REGISTERS.get(chosenIndex));
             }
-            if (load_if_not_found) {
-                m_writer.print("LD ");
-            }
             REGISTERS.set(chosenIndex, var);
+            if (load_if_not_found) {
+                m_writer.println("LD R" + chosenIndex + ", " + var);
+            }
             return ("R" + chosenIndex);
 
         }
@@ -325,32 +325,16 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         for (int i = 0; i < CODE.size(); i++) { // print the output
             m_writer.println("// Step " + i);
 
-            String left = null;
-            String right = null ;
-            if (!REGISTERS.contains(CODE.get(i).LEFT)) {
-                left = choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
-                if (left.charAt(0) != '#')
-                    m_writer.println(left + ", " + CODE.get(i).LEFT);
-            }
-
-            if (!REGISTERS.contains(CODE.get(i).RIGHT)) {
-                right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
-                if (right.charAt(0) != '#')
-                    m_writer.println(right + ", " + CODE.get(i).RIGHT);
-            }
-
-            left = left == null ? choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, false) : left;
-            right = right == null ? choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, false) : right;
+            String left = choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
+            String right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
             String assign = choose_register(CODE.get(i).ASSIGN, CODE.get(i).Life_OUT, CODE.get(i).Next_OUT, false);
-            if (!((assign.equals(left) || assign.equals(right)) && (left.charAt(0) == '#' || right.charAt(0) == '#'))) {
+
+            if (!((assign.equals(left) || assign.equals(right)) && (left.equals("#0") || right.equals("#0")))) {
                 m_writer.print(CODE.get(i).OP + " ");
                 m_writer.print(assign);
                 m_writer.println(", " + left + ", " + right);
            }
-
-//            if (CODE.get(i).ASSIGN.charAt(0) != 't') {
-                MODIFIED.add(CODE.get(i).ASSIGN);
-            //}
+            MODIFIED.add(CODE.get(i).ASSIGN);
 
             m_writer.println(CODE.get(i));
         }
