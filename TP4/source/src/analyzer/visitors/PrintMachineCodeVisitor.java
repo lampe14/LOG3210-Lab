@@ -253,11 +253,7 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
             }
 
             for (String ref: CODE.get(i).REF) {
-                ArrayList<Integer> current_line = new ArrayList();
-                current_line.add(i);
-                for (Integer line: current_line) {
-                    CODE.get(i).Next_IN.add(ref, line);
-                }
+                CODE.get(i).Next_IN.add(ref, i);
             }
         }
     }
@@ -329,10 +325,9 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
             String right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
             String assign = choose_register(CODE.get(i).ASSIGN, CODE.get(i).Life_OUT, CODE.get(i).Next_OUT, false);
 
-            if (!((assign.equals(left) || assign.equals(right)) && (left.equals("#0") || right.equals("#0")))) {
-                m_writer.print(CODE.get(i).OP + " ");
-                m_writer.print(assign);
-                m_writer.println(", " + left + ", " + right);
+            Boolean isAddSubZero = (left.equals("#0") || right.equals("#0")) && (CODE.get(i).OP.equals("ADD") || CODE.get(i).OP.equals("SUB"));
+            if (!((assign.equals(left) || assign.equals(right)) && isAddSubZero)) {
+                m_writer.println(CODE.get(i).OP + " " + assign + ", " + left + ", " + right);
            }
             MODIFIED.add(CODE.get(i).ASSIGN);
 
