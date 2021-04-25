@@ -299,9 +299,14 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
                     REGISTERS.set(i, var);
                     return ("R" + i);
                 }
-                if (next.nextuse.containsKey(REGISTERS.get(i)) && next.nextuse.get(REGISTERS.get(i)).size() >= max) {
-                    max = next.nextuse.get(REGISTERS.get(i)).size();
+
+                ArrayList<Integer> currentNextUse = next.nextuse.get(REGISTERS.get(i));
+                if (currentNextUse != null && currentNextUse.get(currentNextUse.size() - 1) >= max) {
+                    max = currentNextUse.get(currentNextUse.size() - 1);
                     maxIndex = i;
+                } else if (currentNextUse == null) {
+                    maxIndex = i;
+                    break;
                 }
             }
             if (load_if_not_found) {
@@ -319,24 +324,28 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         for (int i = 0; i < CODE.size(); i++) { // print the output
             m_writer.println("// Step " + i);
 
-            String left;
-            String right;
+            String left = null;
+            String right = null ;
             if (!REGISTERS.contains(CODE.get(i).LEFT)) {
                 left = choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
                 if (left.charAt(0) != '#')
                     m_writer.println(left + ", " + CODE.get(i).LEFT);
             }
+
             if (!REGISTERS.contains(CODE.get(i).RIGHT)) {
                 right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, true);
                 if (right.charAt(0) != '#')
                     m_writer.println(right + ", " + CODE.get(i).RIGHT);
             }
 
-            m_writer.print(CODE.get(i).OP + " ");
-            m_writer.print(choose_register(CODE.get(i).ASSIGN, CODE.get(i).Life_OUT, CODE.get(i).Next_OUT, false));
-            left = choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, false);
-            right = choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, false);
-            m_writer.println(", " + left + ", " + right);
+            left = left == null ? choose_register(CODE.get(i).LEFT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, false) : left;
+            right = right == null ? choose_register(CODE.get(i).RIGHT, CODE.get(i).Life_IN, CODE.get(i).Next_IN, false) : right;
+            String assign = choose_register(CODE.get(i).ASSIGN, CODE.get(i).Life_OUT, CODE.get(i).Next_OUT, false);
+            if (!((assign.equals(left) || assign.equals(right)) && (left.charAt(0) == '#' || right.charAt(0) == '#'))) {
+                m_writer.print(CODE.get(i).OP + " ");
+                m_writer.print(assign);
+                m_writer.println(", " + left + ", " + right);
+           }
 
             if (CODE.get(i).ASSIGN.charAt(0) != 't') {
                 MODIFIED.add(CODE.get(i).ASSIGN);
@@ -345,16 +354,11 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
             m_writer.println(CODE.get(i));
         }
 
-        Map<String, String> st = new HashMap<>();
-        for (String modifiedVar: MODIFIED) {
-            st.put(choose_register(modifiedVar, new HashSet<>(), new NextUse(), true), modifiedVar);
-
-        }
-        SortedSet<String> keys = new TreeSet<>(st.keySet());
-        for (String key : keys) {
-            m_writer.print("ST ");
-            m_writer.print(st.get(key));
-            m_writer.println(", " + key);
+        //TODO changer le for loop
+        for(String register : REGISTERS){
+            if(MODIFIED.contains(register) && RETURNED.contains(register)){
+                m_writer.println("ST "+ register + ", R" + REGISTERS.indexOf(register));
+            }
         }
     }
 
