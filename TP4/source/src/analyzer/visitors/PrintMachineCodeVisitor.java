@@ -330,8 +330,7 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
             String assign = choose_register(CODE.get(i).ASSIGN, CODE.get(i).Life_OUT, CODE.get(i).Next_OUT, false);
 
             if (!((assign.equals(left) || assign.equals(right)) && (left.equals("#0") || right.equals("#0")))) {
-                m_writer.print(CODE.get(i).OP + " ");
-                m_writer.print(assign);
+                m_writer.print(CODE.get(i).OP + " " + assign);
                 m_writer.println(", " + left + ", " + right);
            }
             MODIFIED.add(CODE.get(i).ASSIGN);

@@ -62,23 +62,23 @@ ADD R2, R0, R1
 // Next_OUT : a:[6], b:[2, 5], c:[2, 6], d:[1, 5], t0:[1]
 
 // Step 1
-LD R1, d
-MUL R2, R1, R2
+LD R3, d
+MUL R4, R3, R2
 // Life_IN  : [a, b, c, d, i, t0]
 // Life_OUT : [a, b, c, d, i, t1]
 // Next_IN  : a:[6], b:[2, 5], c:[2, 6], d:[1, 5], t0:[1]
 // Next_OUT : a:[6], b:[2, 5], c:[2, 6], d:[5], t1:[3]
 
 // Step 2
-LD R1, c
-MUL R1, R1, R0
+LD R2, c
+MUL R2, R2, R0
 // Life_IN  : [a, b, c, d, i, t1]
 // Life_OUT : [a, b, c, d, i, t1, t2]
 // Next_IN  : a:[6], b:[2, 5], c:[2, 6], d:[5], t1:[3]
 // Next_OUT : a:[6], b:[5], c:[6], d:[5], t1:[3], t2:[3]
 
 // Step 3
-ADD R1, R2, R1
+ADD R2, R4, R2
 // Life_IN  : [a, b, c, d, i, t1, t2]
 // Life_OUT : [a, b, c, d, i, t3]
 // Next_IN  : a:[6], b:[5], c:[6], d:[5], t1:[3], t2:[3]
@@ -91,18 +91,15 @@ ADD R1, R2, R1
 // Next_OUT : a:[6], b:[5], c:[6], d:[5], t:[9]
 
 // Step 5
-LD R2, d
-MUL R0, R2, R0
+MUL R0, R3, R0
 // Life_IN  : [a, b, c, d, t, i]
 // Life_OUT : [t4, a, c, d, t, i]
 // Next_IN  : a:[6], b:[5], c:[6], d:[5], t:[9]
 // Next_OUT : a:[6], c:[6], t:[9], t4:[7]
 
 // Step 6
-LD R2, c
-ST t, R1
-LD R1, a
-MUL R1, R2, R1
+LD R3, c
+MUL R1, R3, R1
 // Life_IN  : [t4, a, c, d, t, i]
 // Life_OUT : [t4, t5, c, d, t, i]
 // Next_IN  : a:[6], c:[6], t:[9], t4:[7]
@@ -123,11 +120,11 @@ ADD R0, R0, R1
 
 // Step 9
 ST a, R0
-LD R0, t
+ADD R0, #0, R2
 // Life_IN  : [a, c, d, t, i]
 // Life_OUT : [a, b, c, d, i]
 // Next_IN  : t:[9]
-// Next_OUT :
+// Next_OUT : 
 
 ST b, R0
 // TODO:: END THE BLOCK 1 HERE ABOVE !
@@ -153,20 +150,21 @@ MUL R1, #2, R0
 
 // Step 1
 LD R2, d
-ADD R1, R1, R2
+ADD R3, R1, R2
 // Life_IN  : [a, b, c, d, i, t0]
 // Life_OUT : [a, b, c, d, i, t1]
 // Next_IN  : c:[4], d:[1, 2, 5], i:[9], t0:[1]
 // Next_OUT : c:[4], d:[2, 5], i:[9], t1:[2]
 
 // Step 2
-MUL R1, R2, R1
+MUL R4, R2, R3
 // Life_IN  : [a, b, c, d, i, t1]
 // Life_OUT : [a, b, c, d, i, t2]
 // Next_IN  : c:[4], d:[2, 5], i:[9], t1:[2]
 // Next_OUT : c:[4], d:[5], i:[9], t2:[3]
 
 // Step 3
+ADD R1, #0, R4
 // Life_IN  : [a, b, c, d, i, t2]
 // Life_OUT : [a, b, c, t, d, i]
 // Next_IN  : c:[4], d:[5], i:[9], t2:[3]
@@ -210,6 +208,7 @@ ADD R0, #0, R1
 // Step 9
 ST d, R0
 LD R0, i
+DIV R0, R0, #2
 // Life_IN  : [a, b, c, d, i]
 // Life_OUT : [a, b, t6, c, d]
 // Next_IN  : i:[9]
@@ -219,10 +218,9 @@ LD R0, i
 // Life_IN  : [a, b, t6, c, d]
 // Life_OUT : [a, b, c, d, i]
 // Next_IN  : t6:[10]
-// Next_OUT :
+// Next_OUT : 
 
 ST i, R0
-
 // TODO:: END THE BLOCK 2 HERE ABOVE!
 
 
