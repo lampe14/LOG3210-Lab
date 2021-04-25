@@ -255,9 +255,8 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
             for (String ref: CODE.get(i).REF) {
                 ArrayList<Integer> current_line = new ArrayList();
                 current_line.add(i);
-                for (Integer line: current_line) {
+                for (Integer line: current_line)
                     CODE.get(i).Next_IN.add(ref, line);
-                }
             }
         }
     }
@@ -279,9 +278,8 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
         // TODO: if REGISTERS size is not max (<REG), add var to REGISTERS and return "R"+index
         if (REGISTERS.size() < REG) {
             REGISTERS.add(var);
-            if(load_if_not_found){
+            if(load_if_not_found)
                 m_writer.println("LD R" + (REGISTERS.size()-1) + ", " + var);
-            }
             return ("R"+ REGISTERS.indexOf(var));
         }
         // TODO: if REGISTERS has max size,
@@ -296,7 +294,6 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
                     chosenIndex = i;
                     break;
                 }
-
                 ArrayList<Integer> currentNextUse = next.nextuse.get(REGISTERS.get(i));
                 if (currentNextUse != null && currentNextUse.get(currentNextUse.size() - 1) >= max) {
                     max = currentNextUse.get(currentNextUse.size() - 1);
@@ -311,9 +308,8 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
                 MODIFIED.remove(REGISTERS.get(chosenIndex));
             }
             REGISTERS.set(chosenIndex, var);
-            if (load_if_not_found) {
+            if (load_if_not_found)
                 m_writer.println("LD R" + chosenIndex + ", " + var);
-            }
             return ("R" + chosenIndex);
 
         }
@@ -334,15 +330,12 @@ public class PrintMachineCodeVisitor implements ParserVisitor {
                 m_writer.println(", " + left + ", " + right);
            }
             MODIFIED.add(CODE.get(i).ASSIGN);
-
             m_writer.println(CODE.get(i));
         }
 
-        //TODO changer le for loop
-        for(String register : REGISTERS){
-            if(MODIFIED.contains(register) && RETURNED.contains(register)){
-                m_writer.println("ST "+ register + ", R" + REGISTERS.indexOf(register));
-            }
+        for (int i = 0; i < REGISTERS.size(); i++){
+            if (MODIFIED.contains(REGISTERS.get(i)) && RETURNED.contains(REGISTERS.get(i)))
+                m_writer.println("ST "+ REGISTERS.get(i) + ", R" + i);
         }
     }
 
